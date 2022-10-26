@@ -49,12 +49,12 @@ public interface VendingMachineServiceLayer {
      * @return BigDecimal representing the funds user need to input to purchase the item
      */
     public BigDecimal determineFundsStillNeeded(BigDecimal inputMoney, BigDecimal itemPrice);
-    /**
+     /**
      * Determines change to be returned to user after successful purchase
      *
      * @param inputMony BigDecimal money input by user
      * @param itemPrice BigDecimal price for item that user is attempting to purchase
      * @return BigDecimal representing the change to be given back to the user
      */
-    public BigDecimal giveChange(BigDecimal inputMoney, BigDecimal itemPrice);
+    public BigDecimal determineChange(BigDecimal inputMoney, BigDecimal itemPrice);
 }

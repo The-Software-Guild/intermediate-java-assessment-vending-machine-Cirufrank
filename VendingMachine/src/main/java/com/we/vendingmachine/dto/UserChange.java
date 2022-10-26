@@ -4,6 +4,8 @@
  */
 package com.we.vendingmachine.dto;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
@@ -16,5 +18,36 @@ package com.we.vendingmachine.dto;
  */
 
 public class UserChange {
+    private int totalQuarters = 0, totalNickels = 0,
+            totalDimes = 0, totalPennies = 0;
+    private BigDecimal totalChange;
     
+    UserChange(BigDecimal userChange) {
+        this.totalChange = userChange;
+    }
+    
+    public int getQuarters() {
+        return totalQuarters;
+    }
+    public void setQuarters(int newQuartersAmount) {
+        this.totalQuarters = newQuartersAmount;
+    }
+    public int getNickels() {
+        return totalNickels;
+    }
+    public void setNickels(int newNickelsAmount) {
+        this.totalNickels = newNickelsAmount;
+    }
+    public int getDimes() {
+        return totalDimes;
+    }
+    public void setDimes(int newDimesAmount) {
+        this.totalDimes = newDimesAmount;
+    }
+    public int getPennines() {
+        return totalPennies;
+    }
+    public void setPennies(int newPenniesAmount) {
+        this.totalPennies = newPenniesAmount;
+    }
 }

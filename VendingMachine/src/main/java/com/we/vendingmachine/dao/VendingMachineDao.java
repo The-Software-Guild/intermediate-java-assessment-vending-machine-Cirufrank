@@ -9,7 +9,13 @@ import java.math.BigDecimal;
 
 /**
  *
- * @author ciruf
+ * @author Cirũ Franklin (she/they), Software Engineer
+ * @course DI002 Full Stack Development Using Java and React (2210)
+ * @project Assessment: Vending Machine
+ * 
+ * @description This interface declares the methods that should 
+ * be available to allow users to purchase items from the Vending 
+ * Machine
  */
 public interface VendingMachineDao {
     /**
