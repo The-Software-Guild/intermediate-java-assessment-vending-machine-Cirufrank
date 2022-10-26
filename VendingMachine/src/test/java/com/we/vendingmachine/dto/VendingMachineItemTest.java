@@ -26,9 +26,9 @@ public class VendingMachineItemTest {
     @Test
     @DisplayName("Test Vending Machine Item constructors")
     public void testConstructors() {
-        VendingMachineItem vmi1 = new VendingMachineItem("Banana");
-        VendingMachineItem vmi2 = new VendingMachineItem("Banana", new BigDecimal("2.50"));
-        VendingMachineItem vmi3 = new VendingMachineItem("Banana", new BigDecimal("2.50"), 10);
+        VendingMachineItem vmi1 = new VendingMachineItem(1, "Banana");
+        VendingMachineItem vmi2 = new VendingMachineItem(2, "Banana", new BigDecimal("2.50"));
+        VendingMachineItem vmi3 = new VendingMachineItem(3, "Banana", new BigDecimal("2.50"), 10);
         
         assertEquals("Banana",vmi1.getItemName(), "Item name should be 'Banana' when vending "
                 + "maching item name is initialized to 'Banana' only");
@@ -61,9 +61,9 @@ public class VendingMachineItemTest {
     @Test
     @DisplayName("Test Vending Machine Item setter method")
     public void testSetterMethod() {
-        VendingMachineItem vmi1 = new VendingMachineItem("Banana");
-        VendingMachineItem vmi2 = new VendingMachineItem("Banana", new BigDecimal("2.50"));
-        VendingMachineItem vmi3 = new VendingMachineItem("Banana", new BigDecimal("2.50"), 10);
+        VendingMachineItem vmi1 = new VendingMachineItem(1, "Banana");
+        VendingMachineItem vmi2 = new VendingMachineItem(2, "Banana", new BigDecimal("2.50"));
+        VendingMachineItem vmi3 = new VendingMachineItem(3, "Banana", new BigDecimal("2.50"), 10);
         
         vmi1.setNumOfItems(100);
         vmi2.setNumOfItems(20);

@@ -18,25 +18,34 @@ import java.math.BigDecimal;
  */
 
 public class VendingMachineItem {
+    private int itemId;
     private String itemName;
     private BigDecimal itemCost;
     private int numOfItems;
     
     public VendingMachineItem() {
     }
-    public VendingMachineItem(String itemName) {
+    public VendingMachineItem(int itemId) {
+        this.itemId = itemId;
+    }
+    public VendingMachineItem(int itemId, String itemName) {
+        this.itemId = itemId;
         this.itemName = itemName;
     }
-    public VendingMachineItem(String itemName, BigDecimal itemCost) {
+    public VendingMachineItem(int itemId, String itemName, BigDecimal itemCost) {
+        this.itemId = itemId;
         this.itemName = itemName;
         this.itemCost = itemCost;
     }
-    public VendingMachineItem(String itemName, BigDecimal itemCost, int numOfItems) {
+    public VendingMachineItem(int itemId, String itemName, BigDecimal itemCost, int numOfItems) {
+        this.itemId = itemId;
         this.itemName = itemName;
         this.itemCost = itemCost;
         this.numOfItems = numOfItems;
     }
-    
+    public int getItemId() {
+        return itemId;
+    }
     public String getItemName() {
         return itemName;
     }
