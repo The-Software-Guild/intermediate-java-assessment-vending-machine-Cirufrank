@@ -4,6 +4,7 @@
  */
 package com.we.vendingmachine.dao;
 
+import com.we.vendingmachine.dto.UserChange;
 import java.math.BigDecimal;
 
 /**
@@ -23,7 +24,7 @@ public interface VendingMachineBankDao {
      *
      * @param inputMony BigDecimal money input by user
      * @param itemPrice BigDecimal price for item that user is attempting to purchase
-     * @return BigDecimal representing the change to be given back to the user
+     * @return UserChange object representing the change to be given back to the user
      */
-    public BigDecimal giveChange(BigDecimal inputMoney, BigDecimal itemPrice);
+    public UserChange giveChange(BigDecimal inputMoney, BigDecimal itemPrice);
 }

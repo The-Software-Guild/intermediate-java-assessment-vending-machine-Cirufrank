@@ -13,14 +13,29 @@ import java.math.BigDecimal;
  * @project Assessment: Vending Machine
  * 
  * @description This class acts as a DTO and represents the coins 
- * in our application and their value
+ * in our application and their total in inventory
  */
 
-public class Coins {
-    final private BigDecimal QUARTER_VAL = new BigDecimal(".25"),
+public class Coin {
+    final private static BigDecimal QUARTER_VAL = new BigDecimal(".25"),
             NICKEL_VAL = new BigDecimal(".05"), DIME_VAL = new BigDecimal(".10"),
             PENNY_VAL = new BigDecimal(".01");
-    public BigDecimal getCoinValue(CoinNames coinValToGet) {
+    private CoinName type;
+    private int total;
+    public Coin(CoinName type, int total) {
+        this.type = type;
+        this.total = total;
+    }
+    public CoinName getCoinType() {
+        return type;
+    }
+    public int getCoinTotal() {
+        return total;
+    }
+    public void setCoinTotal(int newTotal) {
+        this.total = newTotal;
+    }
+    public static BigDecimal getCoinValue(CoinName coinValToGet) {
         switch (coinValToGet) {
             case PENNY:
                 return PENNY_VAL;

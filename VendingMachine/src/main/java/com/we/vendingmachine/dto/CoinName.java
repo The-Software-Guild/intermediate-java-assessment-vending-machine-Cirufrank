@@ -14,6 +14,6 @@ package com.we.vendingmachine.dto;
  * application returns change with
  */
 
-public enum CoinNames {
+public enum CoinName {
     QUARTER, NICKEL, DIME, PENNY;
 }

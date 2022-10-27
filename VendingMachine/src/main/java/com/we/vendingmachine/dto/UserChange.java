@@ -22,7 +22,7 @@ public class UserChange {
             totalDimes = 0, totalPennies = 0;
     private BigDecimal totalChange;
     
-    UserChange(BigDecimal userChange) {
+    public UserChange(BigDecimal userChange) {
         this.totalChange = userChange;
     }
     

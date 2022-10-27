@@ -107,7 +107,7 @@ public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
    private void writeFile() {
        try {
            PrintWriter output = new PrintWriter(
-                                new FileWriter(
+                                    new FileWriter(
                                     inventoryFile));
            ArrayList<VendingMachineItem> listOfItems = new ArrayList(getAllItems());
            for (VendingMachineItem currentItem : listOfItems) {

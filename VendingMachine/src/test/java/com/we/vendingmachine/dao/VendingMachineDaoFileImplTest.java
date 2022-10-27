@@ -41,6 +41,8 @@ public class VendingMachineDaoFileImplTest {
 
     @Test
     public void testGetAllItems(VendingMachineDaoStubFileImpl testDao) {
+        //Tests that the 0 items in inventory are returned in a List when using the
+        //getAllItems method
         final int TOTAL_LIST_ITEMS = 9;
         final List<VendingMachineItem> allItems = testDao.getAllItems();
         for (VendingMachineItem curItem : allItems) {
@@ -53,6 +55,8 @@ public class VendingMachineDaoFileImplTest {
     @ParameterizedTest
     @ValueSource(ints = {3})
     public void testGetItem(int itemId, VendingMachineDaoStubFileImpl testDao) {
+        //Tests the VendingMachineItem with an ID of 3 can be successfully retrieved
+        //Through the getItem method
         final String accurateItemString = "3::Testy: Crunchy Oats and Honey Granola Bar::0.50::3";
         final String vendingMachineItemTestString = testDao.marshallItem(testDao.getItem(itemId));
         
@@ -61,8 +65,11 @@ public class VendingMachineDaoFileImplTest {
     }
     
     @ParameterizedTest
-    @ValueSource(ints = {7})
+    @ValueSource(ints = {7, 9})
     public void testPurchaseItem(int itemId, VendingMachineDaoStubFileImpl testDao) {
+        //Tests that the VendingMachineDaoFileImpl class' purchaseItem method 
+        //successfully removes the number of the items from inventory and then 
+        //returns the item with its inventory number now decremented
         final int ONE_ITEM = 1, NO_ITEMS = 0;
         final VendingMachineItem purchasedItem = testDao.getItem(itemId);
         final int prevNumOfItems = purchasedItem.getNumOfItems();
