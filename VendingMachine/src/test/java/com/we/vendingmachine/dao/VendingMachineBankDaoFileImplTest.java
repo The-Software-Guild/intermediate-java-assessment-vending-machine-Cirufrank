@@ -46,16 +46,17 @@ public class VendingMachineBankDaoFileImplTest {
         for (Coin currentCoin : coinBank) {
             System.out.println(currentCoin.toString());
         }
-        assertNotEquals(TOTAL_COIN_TYPES, coinBank.size());
+        assertEquals(TOTAL_COIN_TYPES, coinBank.size());
         
     }
     
     @ParameterizedTest
     @EnumSource(value = CoinName.class, names = {"QUARTER"})
     public void testGetCoin(CoinName coinName, VendingMachineBankDaoStubFileImpl testBankDao) {
-        final String ACCURATE_QUARTER_RECORD_STRING = "QUARTER::5000";
-        final Coin accurateQuarterRecord = testBankDao.unMarshallCoin(ACCURATE_QUARTER_RECORD_STRING);
         final Coin testQuarterRecord = testBankDao.getCoin(coinName);
+        String accurateQuarterRecordString = "QUARTER::" + testQuarterRecord.getCoinTotal();
+        final Coin accurateQuarterRecord = testBankDao.unMarshallCoin(accurateQuarterRecordString);
+        
         assertEquals(accurateQuarterRecord, testQuarterRecord);
     }
     

@@ -35,10 +35,19 @@ public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao 
     final private Map<CoinName, Coin> coinBank = new HashMap<>();
     private String inventoryFile;
     final private String DELIMITER = "::";
-    public UserChange giveChange(BigDecimal inputMoney, BigDecimal itemPrice) {
-        final BigDecimal totalChange = inputMoney.subtract(itemPrice);
-        //STILL NEED TO IMPLEMENT
-        final UserChange change = new UserChange(totalChange);
+    @Override
+    public UserChange giveChange(UserChange change) {
+        loadCoins();
+        final ArrayList<Coin> changeToGive = change.getCoins();
+          for (Coin changeCoin : changeToGive) {
+              final CoinName typeOfChange = changeCoin.getCoinType();
+              final Coin inventoryCoin = coinBank.get(typeOfChange);
+              final int totalInInventory = inventoryCoin.getCoinTotal();
+              final int coinsNeededForChange = changeCoin.getCoinTotal();
+              final int remainingCoinsInInventory = totalInInventory - coinsNeededForChange;
+              inventoryCoin.setCoinTotal(remainingCoinsInInventory);
+          }
+        writeCoins();
         return change;
     }
     public VendingMachineBankDaoStubFileImpl() {
@@ -79,8 +88,9 @@ public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao 
         try {
             PrintWriter output = new PrintWriter(
                                         new FileWriter(inventoryFile));
-            ArrayList<Coin> coins = new ArrayList(coinBank.values());
+            ArrayList<Coin> coins = new ArrayList(this.getAllCoins());
             for (Coin currentCoin : coins) {
+                System.out.println("WRITING: " + currentCoin.toString());
                  final String coinAsText = marshallCoin(currentCoin);
                  output.println(coinAsText);
                  output.flush();

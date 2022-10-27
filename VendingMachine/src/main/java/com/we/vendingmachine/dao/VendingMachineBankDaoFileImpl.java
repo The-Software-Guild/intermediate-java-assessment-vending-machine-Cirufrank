@@ -37,15 +37,15 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
     final private String DELIMITER = "::";
     @Override
     public UserChange giveChange(UserChange change) {
+        loadCoins();
         final ArrayList<Coin> changeToGive = change.getCoins();
           for (Coin changeCoin : changeToGive) {
               final CoinName typeOfChange = changeCoin.getCoinType();
-              final Coin inventoryCoin = getCoin(typeOfChange);
+              final Coin inventoryCoin = coinBank.get(typeOfChange);
               final int totalInInventory = inventoryCoin.getCoinTotal();
               final int coinsNeededForChange = changeCoin.getCoinTotal();
               final int remainingCoinsInInventory = totalInInventory - coinsNeededForChange;
               inventoryCoin.setCoinTotal(remainingCoinsInInventory);
-//              coinBank.put(typeOfChange, inventoryCoin);
           }
           writeCoins();
         return change;
@@ -88,7 +88,7 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
         try {
             PrintWriter output = new PrintWriter(
                                         new FileWriter(inventoryFile));
-            ArrayList<Coin> coins = new ArrayList(coinBank.values());
+            ArrayList<Coin> coins = new ArrayList(this.getAllCoins());
             for (Coin currentCoin : coins) {
                  final String coinAsText = marshallCoin(currentCoin);
                  output.println(coinAsText);
