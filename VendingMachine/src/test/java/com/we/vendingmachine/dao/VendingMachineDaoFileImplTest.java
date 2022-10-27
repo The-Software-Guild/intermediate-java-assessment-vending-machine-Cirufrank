@@ -12,7 +12,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  *
@@ -24,20 +29,18 @@ import static org.junit.jupiter.api.Assertions.*;
  * VendingMachineDao using JUnit
  */
 
+//Here just incase I'd like to run tests concurrently
+//@Execution(ExecutionMode.CONCURRENT)
+@ExtendWith(VendingMachineParameterResolver.class)
 public class VendingMachineDaoFileImplTest {
     final private String inventoryFileTestName = "test-inventory.txt";
-    private VendingMachineDaoFileImpl testDao;
+    private VendingMachineDaoStubFileImpl testDao;
     
     public VendingMachineDaoFileImplTest() {
     }
 
-    @BeforeEach
-    public void setUp() {
-        testDao = new VendingMachineDaoFileImpl(inventoryFileTestName);
-    }
-
     @Test
-    public void testGetAllItems() {
+    public void testGetAllItems(VendingMachineDaoStubFileImpl testDao) {
         final int TOTAL_LIST_ITEMS = 9;
         final List<VendingMachineItem> allItems = testDao.getAllItems();
         for (VendingMachineItem curItem : allItems) {
@@ -45,6 +48,32 @@ public class VendingMachineDaoFileImplTest {
             System.out.println(currentItemString);
         }
         assertEquals(TOTAL_LIST_ITEMS, allItems.size());
+    }
+    
+    @ParameterizedTest
+    @ValueSource(ints = {3})
+    public void testGetItem(int itemId, VendingMachineDaoStubFileImpl testDao) {
+        final String accurateItemString = "3::Testy: Crunchy Oats and Honey Granola Bar::0.50::3";
+        final String vendingMachineItemTestString = testDao.marshallItem(testDao.getItem(itemId));
+        
+        assertEquals(accurateItemString,vendingMachineItemTestString);
+        
+    }
+    
+    @ParameterizedTest
+    @ValueSource(ints = {7})
+    public void testPurchaseItem(int itemId, VendingMachineDaoStubFileImpl testDao) {
+        final int ONE_ITEM = 1, NO_ITEMS = 0;
+        final VendingMachineItem purchasedItem = testDao.getItem(itemId);
+        final int prevNumOfItems = purchasedItem.getNumOfItems();
+        final int accurateUpdatedNumOfItems = prevNumOfItems - ONE_ITEM;
+        if (accurateUpdatedNumOfItems > NO_ITEMS) {
+            final VendingMachineItem itemAfterPurchase = testDao.purchaseItem(itemId);
+        final int testUpdateItemNum = itemAfterPurchase.getNumOfItems();
+        assertEquals(accurateUpdatedNumOfItems, testUpdateItemNum);
+        final VendingMachineItem testItemFromRoster = testDao.getItem(itemId);
+        assertEquals(accurateUpdatedNumOfItems, testItemFromRoster.getNumOfItems());
+        }    
     }
     
 }

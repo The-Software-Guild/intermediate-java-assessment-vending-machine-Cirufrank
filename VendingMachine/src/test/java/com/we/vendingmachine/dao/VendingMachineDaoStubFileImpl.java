@@ -27,17 +27,22 @@ import java.util.Scanner;
  * @description This class implements the methods declared by the
  * VendingMachineDao interface that allows our application to read, 
  * retrieve, and update our inventory
+ * 
+ * Through implementing a stub of our VendingMachineDaoFileImpl
+ * class we are able to edit the methods for testing (i.e. making 
+ * the marshallItems method public instead of void without altering
+ * the VendingMachineDaoFileImpl class
  */
 
-public class VendingMachineDaoFileImpl implements VendingMachineDao {
+public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
    final private String DELIMITER = "::";
    final private Map <Integer, VendingMachineItem> vendingMachineItems = new HashMap<>();
    private String inventoryFile;
    
-   VendingMachineDaoFileImpl() {
+   VendingMachineDaoStubFileImpl() {
        inventoryFile = "inventory.txt";
    }
-   VendingMachineDaoFileImpl(String inventoryFile) {
+   VendingMachineDaoStubFileImpl(String inventoryFile) {
        this.inventoryFile = inventoryFile;
    }
    
@@ -50,7 +55,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
    @Override
    public VendingMachineItem getItem(int itemId) {
        loadFile();
-       final VendingMachineItem item = vendingMachineItems.get(itemId);
+       final VendingMachineItem item = vendingMachineItems.get(Integer.valueOf(itemId));
        return item;
    }
    @Override
@@ -64,7 +69,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
        writeFile();
        return itemToPurchase;
    }
-   private VendingMachineItem unMarshallItem(String itemAsText) {
+   public VendingMachineItem unMarshallItem(String itemAsText) {
        final int ID_INDEX = 0, NAME_INDEX = 1, COST_INDEX = 2, TOTAL_INDEX = 3;
        final String[] itemTokens = itemAsText.split(DELIMITER);
        final int itemId = Integer.valueOf(itemTokens[ID_INDEX]);
@@ -76,7 +81,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
        return itemFromFile;
    }
    
-   private String marshallItem(VendingMachineItem item) {
+   public String marshallItem(VendingMachineItem item) {
        String itemAsText = item.getItemId() + DELIMITER
                + item.getItemName() + DELIMITER
                + item.getItemCost() + DELIMITER
