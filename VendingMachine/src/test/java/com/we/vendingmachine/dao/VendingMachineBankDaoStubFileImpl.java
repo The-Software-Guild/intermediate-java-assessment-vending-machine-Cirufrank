@@ -31,7 +31,7 @@ import java.util.Scanner;
  * coin bank inventory file
  */
 
-public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
+public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao {
     final private Map<CoinName, Coin> coinBank = new HashMap<>();
     private String inventoryFile;
     final private String DELIMITER = "::";
@@ -41,13 +41,13 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
         final UserChange change = new UserChange(totalChange);
         return change;
     }
-    public VendingMachineBankDaoFileImpl() {
+    public VendingMachineBankDaoStubFileImpl() {
         inventoryFile  = "coin-inventory.txt";
     }
-    public VendingMachineBankDaoFileImpl(String coinInventoryFile) {
+    public VendingMachineBankDaoStubFileImpl(String coinInventoryFile) {
         this.inventoryFile = coinInventoryFile;
     }
-    private Coin unMarshallCoin(String coinAsText) {
+    public Coin unMarshallCoin(String coinAsText) {
         final int COIN_NAME_INDEX = 0, TOTAL_COINS_INDEX = 1;
         final String[] coinTokens = coinAsText.split(DELIMITER);
         final CoinName coinType = CoinName.valueOf(coinTokens[0]);
@@ -55,7 +55,7 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
         final Coin coin = new Coin(coinType, totalCoins);
         return coin;
     }
-    private String marshallCoin(Coin coin) {
+    public String marshallCoin(Coin coin) {
         String coinAsText = "" + coin.getCoinType()
                 + DELIMITER + coin.getCoinTotal();
         return coinAsText;

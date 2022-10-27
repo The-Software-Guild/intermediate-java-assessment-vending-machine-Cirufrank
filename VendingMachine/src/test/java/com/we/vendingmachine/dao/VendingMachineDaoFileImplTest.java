@@ -41,7 +41,7 @@ public class VendingMachineDaoFileImplTest {
 
     @Test
     public void testGetAllItems(VendingMachineDaoStubFileImpl testDao) {
-        //Tests that the 0 items in inventory are returned in a List when using the
+        //Tests that the 9 items in inventory are returned in a List when using the
         //getAllItems method
         final int TOTAL_LIST_ITEMS = 9;
         final List<VendingMachineItem> allItems = testDao.getAllItems();

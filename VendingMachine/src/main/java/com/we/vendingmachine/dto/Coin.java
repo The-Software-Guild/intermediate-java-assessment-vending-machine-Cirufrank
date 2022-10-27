@@ -5,6 +5,7 @@
 package com.we.vendingmachine.dto;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  *
@@ -22,15 +23,20 @@ public class Coin {
             PENNY_VAL = new BigDecimal(".01");
     private CoinName type;
     private int total;
+    private BigDecimal value;
     public Coin(CoinName type, int total) {
         this.type = type;
         this.total = total;
+        this.value = getCoinValue(type);
     }
     public CoinName getCoinType() {
         return type;
     }
     public int getCoinTotal() {
         return total;
+    }
+    public BigDecimal getCoinValue() {
+        return value;
     }
     public void setCoinTotal(int newTotal) {
         this.total = newTotal;
@@ -49,5 +55,39 @@ public class Coin {
                 //Maybe update this to a custom exception later
                 throw new UnsupportedOperationException();
         }
+    }
+    
+    //The hashCode and equals methods can be used to assert on whole Coin
+    //objects to check their equality with another Coin object
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.type);
+        hash = 59 * hash + Objects.hashCode(this.total);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Coin other = (Coin) obj;
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
+        return Objects.equals(this.total, other.total);
+    }
+    //This help test error message become more readable
+    @Override
+    public String toString() {
+        return "coin{" + "type=" + type + ", value=" + value + ", total=" + 
+                total + '}';
     }
 }

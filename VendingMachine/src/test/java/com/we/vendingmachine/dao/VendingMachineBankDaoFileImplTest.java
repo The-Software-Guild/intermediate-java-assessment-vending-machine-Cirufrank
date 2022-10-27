@@ -4,6 +4,11 @@
  */
 package com.we.vendingmachine.dao;
 
+import com.we.vendingmachine.dto.Coin;
+import com.we.vendingmachine.dto.CoinName;
+import com.we.vendingmachine.dto.UserChange;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +16,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 
 /**
  *
@@ -27,26 +36,61 @@ public class VendingMachineBankDaoFileImplTest {
     
     public VendingMachineBankDaoFileImplTest() {
     }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
 
     @Test
-    public void testSomeMethod() {
-        fail("The test case is a prototype.");
+    public void testGetAllCoins(VendingMachineBankDaoStubFileImpl testBankDao) {
+        //Tests that the 4 coin types in inventory are returned in a List when using the
+        //getAllCoins method
+        final int TOTAL_COIN_TYPES = 4;
+        final ArrayList<Coin> coinBank = new ArrayList(testBankDao.getAllCoins());
+        for (Coin currentCoin : coinBank) {
+            System.out.println(currentCoin.toString());
+        }
+        assertNotEquals(TOTAL_COIN_TYPES, coinBank.size());
+        
+    }
+    
+    @ParameterizedTest
+    @EnumSource(value = CoinName.class, names = {"QUARTER"})
+    public void testGetCoin(CoinName coinName, VendingMachineBankDaoStubFileImpl testBankDao) {
+        final String ACCURATE_QUARTER_RECORD_STRING = "QUARTER::5000";
+        final Coin accurateQuarterRecord = testBankDao.unMarshallCoin(ACCURATE_QUARTER_RECORD_STRING);
+        final Coin testQuarterRecord = testBankDao.getCoin(coinName);
+        assertEquals(accurateQuarterRecord, testQuarterRecord);
+    }
+    
+    @Test
+    public void testGiveChange(VendingMachineBankDaoStubFileImpl testBankDao) {
+        final int TOTAL_QUARTERS = 4, TOTAL_NICKELS = 2, TOTAL_PENNIES = 1, TOTAL_DIMES = 1;
+        final UserChange userChange = new UserChange(new BigDecimal("1.21"));
+        final ArrayList<Coin> prevCoinBank = new ArrayList(testBankDao.getAllCoins());
+        userChange.setTotalQuarters(TOTAL_QUARTERS);
+        userChange.setTotalNickels(TOTAL_NICKELS);
+        userChange.setTotalPennies(TOTAL_PENNIES);
+        userChange.setTotalDimes(TOTAL_DIMES);
+        testBankDao.giveChange(userChange);
+        for (Coin currentCoin : prevCoinBank) {
+            final CoinName coinName = currentCoin.getCoinType();
+            switch(coinName) {
+                case QUARTER:
+                    assertEquals(currentCoin.getCoinTotal() - TOTAL_QUARTERS, 
+                            testBankDao.getCoin(CoinName.QUARTER).getCoinTotal());
+                    break;
+                case DIME:
+                    assertEquals(currentCoin.getCoinTotal() - TOTAL_DIMES, 
+                            testBankDao.getCoin(CoinName.DIME).getCoinTotal());
+                    break;
+                case NICKEL:
+                    assertEquals(currentCoin.getCoinTotal() - TOTAL_NICKELS, 
+                            testBankDao.getCoin(CoinName.NICKEL).getCoinTotal());
+                    break;
+                case PENNY:
+                    assertEquals(currentCoin.getCoinTotal() - TOTAL_PENNIES, 
+                            testBankDao.getCoin(CoinName.PENNY).getCoinTotal());
+                    break;
+            }
+        }
+        
     }
     
 }

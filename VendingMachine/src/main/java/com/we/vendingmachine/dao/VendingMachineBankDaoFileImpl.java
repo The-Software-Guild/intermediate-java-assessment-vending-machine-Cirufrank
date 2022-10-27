@@ -35,10 +35,19 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
     final private Map<CoinName, Coin> coinBank = new HashMap<>();
     private String inventoryFile;
     final private String DELIMITER = "::";
-    public UserChange giveChange(BigDecimal inputMoney, BigDecimal itemPrice) {
-        final BigDecimal totalChange = inputMoney.subtract(itemPrice);
-        //STILL NEED TO IMPLEMENT
-        final UserChange change = new UserChange(totalChange);
+    @Override
+    public UserChange giveChange(UserChange change) {
+        final ArrayList<Coin> changeToGive = change.getCoins();
+          for (Coin changeCoin : changeToGive) {
+              final CoinName typeOfChange = changeCoin.getCoinType();
+              final Coin inventoryCoin = getCoin(typeOfChange);
+              final int totalInInventory = inventoryCoin.getCoinTotal();
+              final int coinsNeededForChange = changeCoin.getCoinTotal();
+              final int remainingCoinsInInventory = totalInInventory - coinsNeededForChange;
+              inventoryCoin.setCoinTotal(remainingCoinsInInventory);
+//              coinBank.put(typeOfChange, inventoryCoin);
+          }
+          writeCoins();
         return change;
     }
     public VendingMachineBankDaoFileImpl() {

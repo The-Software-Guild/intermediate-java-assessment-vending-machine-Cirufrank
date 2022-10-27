@@ -5,6 +5,9 @@
 package com.we.vendingmachine.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -18,36 +21,71 @@ import java.math.BigDecimal;
  */
 
 public class UserChange {
-    private int totalQuarters = 0, totalNickels = 0,
-            totalDimes = 0, totalPennies = 0;
+    final private int NO_COINS = 0;
+    final private Coin QUARTERS = new Coin(CoinName.QUARTER, NO_COINS);
+    final private Coin NICKELS = new Coin(CoinName.NICKEL, NO_COINS);
+    final private Coin DIMES = new Coin(CoinName.DIME, NO_COINS);
+    final private Coin PENNIES = new Coin(CoinName.PENNY, NO_COINS);
+
     private BigDecimal totalChange;
     
     public UserChange(BigDecimal userChange) {
         this.totalChange = userChange;
     }
     
-    public int getQuarters() {
-        return totalQuarters;
+    public Coin getQuarters() {
+        return QUARTERS;
     }
-    public void setQuarters(int newQuartersAmount) {
-        this.totalQuarters = newQuartersAmount;
+    public void setTotalQuarters(int newQuartersAmount) {
+        QUARTERS.setCoinTotal(newQuartersAmount);
     }
-    public int getNickels() {
-        return totalNickels;
+    public Coin getNickels() {
+        return NICKELS;
     }
-    public void setNickels(int newNickelsAmount) {
-        this.totalNickels = newNickelsAmount;
+    public void setTotalNickels(int newNickelsAmount) {
+        NICKELS.setCoinTotal(newNickelsAmount);
     }
-    public int getDimes() {
-        return totalDimes;
+    public Coin getDimes() {
+        return DIMES;
     }
-    public void setDimes(int newDimesAmount) {
-        this.totalDimes = newDimesAmount;
+    public void setTotalDimes(int newDimesAmount) {
+        DIMES.setCoinTotal(newDimesAmount);
     }
-    public int getPennines() {
-        return totalPennies;
+    public Coin getPennines() {
+        return PENNIES;
     }
-    public void setPennies(int newPenniesAmount) {
-        this.totalPennies = newPenniesAmount;
+    public void setTotalPennies(int newPenniesAmount) {
+        PENNIES.setCoinTotal(newPenniesAmount);
+    }
+    public ArrayList<Coin> getCoins() {
+        final ArrayList<Coin> coinList = new ArrayList<Coin>(Arrays.asList(QUARTERS, NICKELS, DIMES, PENNIES));
+        return coinList;
+    }
+    public void updateCoinAmount(Coin coin) {
+        final CoinName coinName = coin.getCoinType();
+        final int coinAmount = coin.getCoinTotal();
+        switch(coinName) {
+            case QUARTER:
+                QUARTERS.setCoinTotal(coinAmount);
+                break;
+            case NICKEL:
+                NICKELS.setCoinTotal(coinAmount);
+                break;
+            case DIME:
+                DIMES.setCoinTotal(coinAmount);
+                break;
+            case PENNY:
+                PENNIES.setCoinTotal(coinAmount);
+                break;
+            default:
+                //Maybe update this to a custom exception later
+                throw new UnsupportedOperationException();
+            
+        }
+    }
+    public void updateCoins(List<Coin> coins) {
+        for (Coin currentCoin : coins) {
+            updateCoinAmount(currentCoin);
+        }
     }
 }

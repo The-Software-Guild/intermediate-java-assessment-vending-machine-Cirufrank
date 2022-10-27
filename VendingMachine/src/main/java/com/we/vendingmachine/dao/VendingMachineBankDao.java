@@ -26,5 +26,5 @@ public interface VendingMachineBankDao {
      * @param itemPrice BigDecimal price for item that user is attempting to purchase
      * @return UserChange object representing the change to be given back to the user
      */
-    public UserChange giveChange(BigDecimal inputMoney, BigDecimal itemPrice);
+    public UserChange giveChange(UserChange change);
 }
