@@ -89,8 +89,9 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         final UserChange userChange = new UserChange(totalChange);
         for (Coin currentCoin : UserChange.VAL_DESC_COIN_LIST) {
             if ((totalChange.compareTo(BigDecimal.ZERO) > NO_MORE_CHANGE) == true) {
+                final int NO_DECIMALS = 0;
                 final BigDecimal coinValue = currentCoin.getCoinValue();
-                final BigDecimal coinsToGive = totalChange.divide(coinValue, RoundingMode.DOWN);
+                final BigDecimal coinsToGive = totalChange.divide(coinValue, NO_DECIMALS, RoundingMode.DOWN);
                 final int intCoinsToGive = coinsToGive.intValueExact();
                 final BigDecimal coinsValue = coinsToGive.multiply(coinValue);
                 final Coin coinsForUser = new Coin(currentCoin.getCoinType(), intCoinsToGive);

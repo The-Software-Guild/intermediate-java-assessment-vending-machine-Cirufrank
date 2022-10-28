@@ -37,37 +37,37 @@ public class VendingMachineController {
     public void run() {
         int menuSelection = 0, userChoice = 0;
         view.displayWelcomeMessage();
-        try {
-            while(usingMachine) {
-            displayMenu();
-            view.displayInputMoney();
-            userChoice = view.getUserItemChoice();
-            switch(userChoice) {
-                case INPUT_MONEY_ID:
-                    inputUserFunds();
-                    break;
-                case REFUND_MONEY_ID:
-                    refundUserMoney();
-                    break;
-                case EXIT_ID:
-                    exitUser();
-                    usingMachine = false;
-                    break;
-                default:
-                    makeUserPurchase(userChoice);
-                    break;
-             }
-            }
-        } catch (VendingMachineInsufficientFundsException | VendingMachineDaoPersistenceException | 
-                VendingMachineItemUnavailableException error)  {
-            view.displayErrorMessage(error.getMessage());
-        }
         
+        while(usingMachine) {
+            try {
+                displayMenu();
+                view.displayInputMoney();
+                userChoice = view.getUserItemChoice();
+                switch(userChoice) {
+                    case INPUT_MONEY_ID:
+                        inputUserFunds();
+                        break;
+                    case REFUND_MONEY_ID:
+                        refundUserMoney();
+                        break;
+                    case EXIT_ID:
+                        exitUser();
+                        usingMachine = false;
+                        break;
+                    default:
+                        makeUserPurchase(userChoice);
+                        break;
+                    }
+                } catch (VendingMachineInsufficientFundsException | VendingMachineDaoPersistenceException | 
+                        VendingMachineItemUnavailableException error)  {
+                    view.displayErrorMessage(error.getMessage());
+                }
+         } 
     }
     private void inputUserFunds() {
             view.readInputMoney();
             view.displayInputMoney();
-     }
+    }
     private void refundUserMoney() {
         view.displayRefundBanner();
         view.displayRefundedMoney();
@@ -75,7 +75,7 @@ public class VendingMachineController {
         view.resetInputMoney();
     }
     private void exitUser() {
-        view.displayRefundedMoney();
+        view.displayRefundedExitMoney();
         view.displayGoodbyeMessage();
     }
     private void makeUserPurchase(int choiceOfUser) throws VendingMachineInsufficientFundsException, VendingMachineDaoPersistenceException,

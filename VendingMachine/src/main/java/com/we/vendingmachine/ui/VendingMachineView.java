@@ -73,6 +73,11 @@ public class VendingMachineView {
     public void displayRefundedMoney() {
         io.print("Here is your $" + inputMoney + " back");
     }
+    public void displayRefundedExitMoney() {
+        final int INT_NO_MONEY = 0;
+        if (inputMoney.compareTo(NO_MONEY) > INT_NO_MONEY)
+        io.print("Here is your $" + inputMoney + " back");
+    }
     public void updateInputMoney(BigDecimal additionalMoney) {
         this.inputMoney = this.inputMoney.add(additionalMoney);
     }
@@ -93,15 +98,6 @@ public class VendingMachineView {
             io.print(itemChoiceText);
             
         });
-//        io.print(ITEM_1_TEXT);
-//        io.print(ITEM_2_TEXT);
-//        io.print(ITEM_3_TEXT);
-//        io.print(ITEM_4_TEXT);
-//        io.print(ITEM_5_TEXT);
-//        io.print(ITEM_6_TEXT);
-//        io.print(ITEM_7_TEXT);
-//        io.print(ITEM_8_TEXT);
-//        io.print(ITEM_9_TEXT);
         io.print(CHOICE_10_INPUT_FUNDS_TEXT);
         io.print(CHOICE_11_REFUND_MONEY_TEXT);
         io.print(CHOICE_12_EXIT_TEXT);
@@ -111,16 +107,17 @@ public class VendingMachineView {
     }
     public void displayUserChangeAndItem(VendingMachineItem item, UserChange change) {
         final String itemPurchasedMessage = "Here is your item: " + item.getItemName();
-        final String changeMessage = "Also, here is your $" + change.getTotalChange() + "with "
+        final String changeMessage = "Also, here is your $" + change.getTotalChange() + ": "
                 + change.getTotalQuarters() + " in quarters, "  + change.getTotalDimes() + 
                 " in dimes, " + change.getTotalNickels() + " in nickels, and " + change.getTotalPennies()
-                                + "in pennies";
+                                + " in pennies";
         io.print(itemPurchasedMessage);
         io.print(changeMessage);
     }
     public void displayErrorMessage(String message) {
         io.print(ERROR_BANNER);
         io.print(message);
+        io.print(ERROR_BANNER);
     }
     public void displayGoodbyeMessage() {
         io.print(GOODBYE_BANNER);

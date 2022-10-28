@@ -26,14 +26,18 @@ public class UserIOConsoleImpl implements UserIO {
         final int MIN_CHOICE = 1, MAX_CHOICE = 12;
         boolean invalidChoice = true;
         String stringItemChoice;
-        int itemChoice = 0;
+        int itemChoice = 1;
         do {
             try {
+                if (itemChoice < MIN_CHOICE || itemChoice > MAX_CHOICE) {
+                    print("Invalid choice, please enter an integer displayed on "
+                        + "the menu");
+                }
                 stringItemChoice = readString(message);
                 itemChoice = Integer.valueOf(stringItemChoice);
                 invalidChoice = false;
             } catch(NumberFormatException error) {
-                print("Invalid choice, please enter a integer displayed on "
+                print("Invalid choice, please enter an integer displayed on "
                         + "the menu");
             }
         } while (invalidChoice || itemChoice < MIN_CHOICE || itemChoice > MAX_CHOICE);

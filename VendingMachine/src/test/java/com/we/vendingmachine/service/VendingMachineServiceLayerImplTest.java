@@ -4,6 +4,7 @@
  */
 package com.we.vendingmachine.service;
 
+import com.we.vendingmachine.dao.VendingMachineDaoPersistenceException;
 import com.we.vendingmachine.dao.VendingMachineDaoStubFileImpl;
 import com.we.vendingmachine.dto.Coin;
 import com.we.vendingmachine.dto.CoinName;
@@ -35,7 +36,8 @@ public class VendingMachineServiceLayerImplTest {
 
     @ParameterizedTest
     @ValueSource(ints = {3})
-    public void testPurchaseItem(int itemId, VendingMachineServiceLayerImpl testServiceLayer) throws VendingMachineInsufficientFundsException {
+    public void testPurchaseItem(int itemId, VendingMachineServiceLayerImpl testServiceLayer) throws VendingMachineInsufficientFundsException,
+            VendingMachineDaoPersistenceException, VendingMachineItemUnavailableException {
         final VendingMachineDaoStubFileImpl publicTestDao = new VendingMachineDaoStubFileImpl("test-inventory.txt");
         final BigDecimal testChange = new BigDecimal("2.00");
         final VendingMachineItem testItem = publicTestDao.getItem(itemId);
