@@ -4,6 +4,7 @@
  */
 package com.we.vendingmachine.service;
 
+import com.we.vendingmachine.dao.VendingMachineBankDaoStubFileImpl;
 import com.we.vendingmachine.dao.VendingMachineDaoPersistenceException;
 import com.we.vendingmachine.dao.VendingMachineDaoStubFileImpl;
 import com.we.vendingmachine.dto.Coin;
@@ -39,17 +40,24 @@ public class VendingMachineServiceLayerImplTest {
     public void testPurchaseItem(int itemId, VendingMachineServiceLayerImpl testServiceLayer) throws VendingMachineInsufficientFundsException,
             VendingMachineDaoPersistenceException, VendingMachineItemUnavailableException {
         final VendingMachineDaoStubFileImpl publicTestDao = new VendingMachineDaoStubFileImpl("test-inventory.txt");
+        final VendingMachineBankDaoStubFileImpl publicTestBankDao = new VendingMachineBankDaoStubFileImpl("test-coin-inventory.txt");
         final BigDecimal testChange = new BigDecimal("2.00");
         final VendingMachineItem testItem = publicTestDao.getItem(itemId);
-        final int accurateChangeNum = 6;
+        final int previousTotalInStock = testItem.getNumOfItems();
+        final int previousQuartersInStock = publicTestBankDao.getCoin(CoinName.QUARTER).getCoinTotal();
+        final int accurateChangeNum = 6, ONE_ITEM = 1;
         final CoinName QUARTER = CoinName.QUARTER;
         UserChange totalChange = testServiceLayer.purchaseItem(testChange, testItem);
+        final int currentQuartersInStock = publicTestBankDao.getCoin(CoinName.QUARTER).getCoinTotal();
         Coin userQuarters = totalChange.getQuarters();
         ArrayList<Coin> userCoins = totalChange.getCoins();
         for (Coin currentCoin : userCoins) {
             System.out.println(currentCoin.toString());
         }
+        final VendingMachineItem updatedTestItem = publicTestDao.getItem(itemId);
         assertEquals(accurateChangeNum, userQuarters.getCoinTotal());
+        assertEquals(previousTotalInStock, updatedTestItem.getNumOfItems() + ONE_ITEM);
+        assertEquals(previousQuartersInStock, currentQuartersInStock + accurateChangeNum);
     }
     
     
