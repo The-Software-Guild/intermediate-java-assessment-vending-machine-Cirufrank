@@ -7,6 +7,7 @@ package com.we.vendingmachine.ui;
 import com.we.vendingmachine.dto.UserChange;
 import com.we.vendingmachine.dto.VendingMachineItem;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,21 +23,42 @@ import java.math.BigDecimal;
 public class VendingMachineView {
     final BigDecimal NO_MONEY = new BigDecimal("0.00");
     BigDecimal inputMoney = new BigDecimal("0.00");
-    UserIO io;
+    final String INPUT_MONEY_PROMPT = "Please input amount in this format: 0.00",
+            ITEM_CHOICE_PROMPT = "Please enter choice below",
+            WELCOME_BANNER = "==== WELCOME TO THE VENDING MACHINE ===",
+            REFUND_BANNER = "=== REFUND ===",
+            ERROR_BANNER = "=== ERROR ===",
+            GOODBYE_BANNER = "=== GOOD BYE AND THANKS FOR COMING! ===",
+            INVENTORY_LIST_BANNER = "=== PLEASE TYPE THE NUMER ITEM YOU'D LIKE TO "
+                + "PURCHASE OR SELECT INPUT FUNDS ===",
+            ITEM_1_TEXT = "1 -> Kashi: Honey Toasted Crunchy Granola Bar",
+            ITEM_2_TEXT = "2 -> Luna: Vanilla Almond Bar",
+            ITEM_3_TEXT = "3 -> Nature Valley: Crunchy Oats and Honey Granola Bar",
+            ITEM_4_TEXT = "4 -> Bare Fruit: Apple Chips",
+            ITEM_5_TEXT = "5 -> Emerald Nuts: 100 Calorie Almond Pack",
+            ITEM_6_TEXT = "6 -> Crunchies: Dried Fruit",
+            ITEM_7_TEXT = "7 -> Sunrich Natural: Chili Limon Pepitas Pumpkin Seeds",
+            ITEM_8_TEXT = "8 -> Fit Joy: Vegan Cheddar Pretzels",
+            ITEM_9_TEXT = "9 -> Chocolate rolls",
+            CHOICE_10_INPUT_FUNDS_TEXT = "10 -> Input Funds",
+            CHOICE_11_REFUND_MONEY_TEXT = "11 -> Refund input money",
+            CHOICE_12_EXIT_TEXT = "12 -> Exit Vending Machine";
+    
+    private UserIO io;
     public VendingMachineView(UserIO io) {
         this.io = io;
     }
-    public int getUserItemChoice(String prompt) {
-        return io.readItemChoice(prompt);
+    public int getUserItemChoice() {
+        return io.readItemChoice(ITEM_CHOICE_PROMPT);
     }
     public void print(String message) {
         System.out.println(message);
     }
     public void displayWelcomeMessage() {
-        io.print("==== WELCOME TO THE VENDING MACHINE ===");
+        io.print(WELCOME_BANNER);
     }
-    public void readInputMoney(String message) {
-        final BigDecimal inputMoney = io.readBigDecimal(message);
+    public void readInputMoney() {
+        final BigDecimal inputMoney = io.readBigDecimal(INPUT_MONEY_PROMPT);
         updateInputMoney(inputMoney);
     }
     public BigDecimal getInputMoney() {
@@ -44,6 +66,9 @@ public class VendingMachineView {
     }
     public void setInputMoney(BigDecimal inputMoney) {
         this.inputMoney = inputMoney;
+    }
+    public void displayRefundBanner() {
+        io.print(REFUND_BANNER);
     }
     public void displayRefundedMoney() {
         io.print("Here is your $" + inputMoney + " back");
@@ -57,21 +82,32 @@ public class VendingMachineView {
     public void displayInputMoney() {
         io.print("Total money input: $" + inputMoney);
     }
-    public void displayMenu() {
-        io.print("=== PLEASE TYPE THE NUMER ITEM YOU'D LIKE TO "
-                + "PURCHASE OR SELECT INPUT FUNDS ===");
-        io.print("1 -> Kashi: Honey Toasted Crunchy Granola Bar");
-        io.print("2 -> Luna: Vanilla Almond Bar");
-        io.print("3 -> Nature Valley: Crunchy Oats and Honey Granola Bar");
-        io.print("4 -> Bare Fruit: Apple Chips");
-        io.print("5 -> Emerald Nuts: 100 Calorie Almond Pack");
-        io.print("6 -> Crunchies: Dried Fruit");
-        io.print("7 -> Sunrich Natural: Chili Limon Pepitas Pumpkin Seeds");
-        io.print("8 -> Fit Joy: Vegan Cheddar Pretzels");
-        io.print("9 -> Chocolate rolls");
-        io.print("10 -> Input Funds");
-        io.print("11 -> Refund input money");
-        io.print("12 -> Exit Vending Machine");
+    public void displayMenu(ArrayList<VendingMachineItem> inventory) {
+        final String OUT_OF_STOCK_MESSAGE = " OUT OF STOCK";
+        final int NONE = 0;
+        io.print(INVENTORY_LIST_BANNER);
+        inventory.stream().forEach((item) -> {
+            final int totalInInventory = item.getNumOfItems();
+            String itemChoiceText = createItemChoiceText(item);
+            if (totalInInventory <= NONE) itemChoiceText += OUT_OF_STOCK_MESSAGE;
+            io.print(itemChoiceText);
+            
+        });
+//        io.print(ITEM_1_TEXT);
+//        io.print(ITEM_2_TEXT);
+//        io.print(ITEM_3_TEXT);
+//        io.print(ITEM_4_TEXT);
+//        io.print(ITEM_5_TEXT);
+//        io.print(ITEM_6_TEXT);
+//        io.print(ITEM_7_TEXT);
+//        io.print(ITEM_8_TEXT);
+//        io.print(ITEM_9_TEXT);
+        io.print(CHOICE_10_INPUT_FUNDS_TEXT);
+        io.print(CHOICE_11_REFUND_MONEY_TEXT);
+        io.print(CHOICE_12_EXIT_TEXT);
+    }
+    private String createItemChoiceText(VendingMachineItem item) {
+        return item.getItemId() + "-> " + item.getItemName();
     }
     public void displayUserChangeAndItem(VendingMachineItem item, UserChange change) {
         final String itemPurchasedMessage = "Here is your item: " + item.getItemName();
@@ -83,10 +119,10 @@ public class VendingMachineView {
         io.print(changeMessage);
     }
     public void displayErrorMessage(String message) {
-        io.print("=== ERROR ===");
+        io.print(ERROR_BANNER);
         io.print(message);
     }
     public void displayGoodbyeMessage() {
-        io.print("=== GOOD BYE AND THANKS FOR COMING! ===");
+        io.print(GOODBYE_BANNER);
     }
 }

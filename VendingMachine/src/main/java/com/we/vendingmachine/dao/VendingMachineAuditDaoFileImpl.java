@@ -31,7 +31,7 @@ public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
     }
     
     @Override
-    public void writeAuditEntry(String message) {
+    public void writeAuditEntry(String message) throws VendingMachineDaoPersistenceException {
         LocalDateTime timeStamp = LocalDateTime.now();
         String formattedTimeStamp = timeStamp.format(
                 DateTimeFormatter.ofPattern(
@@ -43,7 +43,7 @@ public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
             output.flush();
             output.close();
         } catch (IOException error) {
-            System.out.println("-_- No audit entry successfully wrtiten to the audti file");
+            throw new VendingMachineDaoPersistenceException("-_- No audit entry successfully wrtiten to the audti file", error);
         }
     }
 }

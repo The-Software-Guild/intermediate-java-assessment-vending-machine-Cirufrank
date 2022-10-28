@@ -4,11 +4,14 @@
  */
 package com.we.vendingmachine.controller;
 
+import com.we.vendingmachine.dao.VendingMachineDaoPersistenceException;
 import com.we.vendingmachine.dto.UserChange;
 import com.we.vendingmachine.dto.VendingMachineItem;
 import com.we.vendingmachine.service.VendingMachineInsufficientFundsException;
+import com.we.vendingmachine.service.VendingMachineItemUnavailableException;
 import com.we.vendingmachine.service.VendingMachineServiceLayer;
 import com.we.vendingmachine.ui.VendingMachineView;
+import java.util.ArrayList;
 
 /**
  *
@@ -33,34 +36,56 @@ public class VendingMachineController {
     }
     public void run() {
         int menuSelection = 0, userChoice = 0;
+        view.displayWelcomeMessage();
         try {
             while(usingMachine) {
-            view.displayMenu();
+            displayMenu();
             view.displayInputMoney();
-            userChoice = view.getUserItemChoice("Please enter choice below");
+            userChoice = view.getUserItemChoice();
             switch(userChoice) {
                 case INPUT_MONEY_ID:
-                    view.readInputMoney("Please input amount in this format: 0.00");
-                    view.displayInputMoney();
+                    inputUserFunds();
                     break;
                 case REFUND_MONEY_ID:
-                    view.displayRefundedMoney();
-                    view.resetInputMoney();
+                    refundUserMoney();
                     break;
                 case EXIT_ID:
-                    view.displayRefundedMoney();
-                    view.displayGoodbyeMessage();
+                    exitUser();
                     usingMachine = false;
                     break;
                 default:
-                    final VendingMachineItem itemChosen = service.getItem(userChoice);
-                    final UserChange changeLeft = service.purchaseItem(view.getInputMoney(), itemChosen);
-                    view.displayUserChangeAndItem(itemChosen, changeLeft);
+                    makeUserPurchase(userChoice);
                     break;
              }
             }
-        } catch (VendingMachineInsufficientFundsException error) {
+        } catch (VendingMachineInsufficientFundsException | VendingMachineDaoPersistenceException | 
+                VendingMachineItemUnavailableException error)  {
             view.displayErrorMessage(error.getMessage());
         }
+        
+    }
+    private void inputUserFunds() {
+            view.readInputMoney();
+            view.displayInputMoney();
+     }
+    private void refundUserMoney() {
+        view.displayRefundBanner();
+        view.displayRefundedMoney();
+        view.displayRefundBanner();
+        view.resetInputMoney();
+    }
+    private void exitUser() {
+        view.displayRefundedMoney();
+        view.displayGoodbyeMessage();
+    }
+    private void makeUserPurchase(int choiceOfUser) throws VendingMachineInsufficientFundsException, VendingMachineDaoPersistenceException,
+            VendingMachineItemUnavailableException {
+        final VendingMachineItem itemChosen = service.getItem(choiceOfUser);
+        final UserChange changeLeft = service.purchaseItem(view.getInputMoney(), itemChosen);
+        view.displayUserChangeAndItem(itemChosen, changeLeft);
+    }
+    private void displayMenu() throws VendingMachineDaoPersistenceException {
+        final ArrayList<VendingMachineItem> inventory = new ArrayList(service.getAllItems());
+        view.displayMenu(inventory);
     }
 }

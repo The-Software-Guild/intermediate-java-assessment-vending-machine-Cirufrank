@@ -4,9 +4,11 @@
  */
 package com.we.vendingmachine.service;
 
+import com.we.vendingmachine.dao.VendingMachineDaoPersistenceException;
 import com.we.vendingmachine.dto.UserChange;
 import com.we.vendingmachine.dto.VendingMachineItem;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
@@ -29,7 +31,13 @@ public interface VendingMachineServiceLayer {
      * @param itemId ID of item to retrieve
      * @return VendingMachineItem retrieved from the inventory
      */
-    public VendingMachineItem getItem(int itemId);
+    public VendingMachineItem getItem(int itemId) throws VendingMachineDaoPersistenceException;
+    /**
+     * Retrieves a list of all items from inventory
+     *
+     * @return a List<> of all vending machine items from inventory
+     */
+    public List <VendingMachineItem> getAllItems() throws VendingMachineDaoPersistenceException;
     /**
      * Allows user to buy a item and returns the item if a successful purchase is made
      * or null otherwise
@@ -39,7 +47,8 @@ public interface VendingMachineServiceLayer {
      * @return VendingMachineItem purchase if successful purchase is made, and 
      * null if not
      */
-    public UserChange purchaseItem(BigDecimal inputMoney, VendingMachineItem item) throws VendingMachineInsufficientFundsException;
+    public UserChange purchaseItem(BigDecimal inputMoney, VendingMachineItem item) throws VendingMachineInsufficientFundsException, 
+            VendingMachineDaoPersistenceException, VendingMachineItemUnavailableException;
     /**
      * Determines if input money is sufficient to purchase chosen item
      *

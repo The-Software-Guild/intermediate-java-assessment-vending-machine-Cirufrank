@@ -22,5 +22,5 @@ public interface VendingMachineAuditDao {
      * @param message text to be written to Vending Machine Audit file
      * @return void
      */
-    public void writeAuditEntry(String message);
+    public void writeAuditEntry(String message) throws VendingMachineDaoPersistenceException;
 }

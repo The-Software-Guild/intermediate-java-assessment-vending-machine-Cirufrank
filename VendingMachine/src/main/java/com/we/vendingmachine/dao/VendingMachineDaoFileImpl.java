@@ -42,19 +42,19 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
    }
    
    @Override
-   public List <VendingMachineItem> getAllItems() {
+   public List <VendingMachineItem> getAllItems() throws VendingMachineDaoPersistenceException {
        loadFile();
        final ArrayList<VendingMachineItem> listOfItems = new ArrayList(vendingMachineItems.values());
        return listOfItems;
    }
    @Override
-   public VendingMachineItem getItem(int itemId) {
+   public VendingMachineItem getItem(int itemId) throws VendingMachineDaoPersistenceException {
        loadFile();
        final VendingMachineItem item = vendingMachineItems.get(itemId);
        return item;
    }
    @Override
-   public VendingMachineItem purchaseItem(int itemId) {
+   public VendingMachineItem purchaseItem(int itemId) throws VendingMachineDaoPersistenceException{
        loadFile();
        final int ONE_ITEM_TO_REMOVE = 1;
        final VendingMachineItem itemToPurchase = getItem(itemId);
@@ -83,7 +83,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
                + item.getNumOfItems();
        return itemAsText;
    }
-   private void loadFile() {
+   private void loadFile() throws VendingMachineDaoPersistenceException {
        try {
             Scanner scanner = new Scanner(
                         new BufferedReader(
@@ -95,11 +95,11 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
             }
             scanner.close();
        } catch (FileNotFoundException error) {
-           System.out.println("-_- COuld not load inventory");
+           throw new VendingMachineDaoPersistenceException("-_- COuld not load inventory", error);
        }
        
    }
-   private void writeFile() {
+   private void writeFile() throws VendingMachineDaoPersistenceException {
        try {
            PrintWriter output = new PrintWriter(
                                 new FileWriter(
@@ -112,7 +112,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
            }
            output.close();
        } catch(IOException error) {
-           System.out.println("-_- Could not write items back to inventory file");
+           throw new VendingMachineDaoPersistenceException("-_- Could not write items back to inventory file", error);
        }
    }
 }

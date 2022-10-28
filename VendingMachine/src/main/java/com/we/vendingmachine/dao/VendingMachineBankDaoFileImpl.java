@@ -36,7 +36,7 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
     private String inventoryFile;
     final private String DELIMITER = "::";
     @Override
-    public UserChange giveChange(UserChange change) {
+    public UserChange giveChange(UserChange change) throws VendingMachineDaoPersistenceException{
         loadCoins();
         final ArrayList<Coin> changeToGive = change.getCoins();
           for (Coin changeCoin : changeToGive) {
@@ -69,7 +69,7 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
                 + DELIMITER + coin.getCoinTotal();
         return coinAsText;
     }
-    private void loadCoins() {
+    private void loadCoins() throws VendingMachineDaoPersistenceException{
         try {
             Scanner scanner = new Scanner(
                                         new BufferedReader(
@@ -81,10 +81,10 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
             }
             scanner.close();
         } catch(FileNotFoundException error) {
-            System.out.println("-_- Could not load coin inventory from file");
+            throw new VendingMachineDaoPersistenceException("-_- Could not load coin inventory from file", error);
         }
     }
-    private void writeCoins() {
+    private void writeCoins() throws VendingMachineDaoPersistenceException {
         try {
             PrintWriter output = new PrintWriter(
                                         new FileWriter(inventoryFile));
@@ -96,15 +96,15 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
             }
             output.close();
         } catch (IOException error) {
-            System.out.println("-_- Could not write coin inventory to file");
+            throw new VendingMachineDaoPersistenceException("-_- Could not write coin inventory to file", error);
         }
     }
-    public List<Coin> getAllCoins() {
+    public List<Coin> getAllCoins() throws VendingMachineDaoPersistenceException{
         loadCoins();
         ArrayList<Coin> allCoins = new ArrayList(coinBank.values());
         return allCoins;
     }
-    public Coin getCoin(CoinName coinType) {
+    public Coin getCoin(CoinName coinType) throws VendingMachineDaoPersistenceException {
         loadCoins();
         final Coin coin = coinBank.get(coinType);
         return coin;

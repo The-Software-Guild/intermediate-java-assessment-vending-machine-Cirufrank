@@ -27,7 +27,7 @@ public interface VendingMachineDao {
      * @return VendingMachineItem purchase if successful purchase is made, and 
      * null if not
      */
-    public VendingMachineItem purchaseItem(int itemId);
+    public VendingMachineItem purchaseItem(int itemId) throws VendingMachineDaoPersistenceException;
     /**
      * Allows a specific item to be retrieved and returned from the 
      * available vending items, decreasing the number of that item available in
@@ -36,11 +36,11 @@ public interface VendingMachineDao {
      * @param itemid int representing item ID
      * @return VendingMachineItem with a matching id or no such items
      */
-    public VendingMachineItem getItem(int itemId);
+    public VendingMachineItem getItem(int itemId) throws VendingMachineDaoPersistenceException;
     /**
      * Retrieves a list of all items from inventory
      *
      * @return a List<> of all vending machine items from inventory
      */
-    public List <VendingMachineItem> getAllItems();
+    public List <VendingMachineItem> getAllItems() throws VendingMachineDaoPersistenceException;
 }
