@@ -30,6 +30,10 @@ public interface VendingMachineBankDao {
      * @return UserChange object representing the change to be given back to the user
      */
     public UserChange giveChange(UserChange change) throws VendingMachineDaoPersistenceException;
-
+    /**
+     * Returns List of coin inventory from the Vending Machine Bank
+     *
+     * @return List of coin inventory available within the Vending Machine's Coin Bank
+     */
     public List<Coin> getAllCoins() throws VendingMachineDaoPersistenceException;
 }

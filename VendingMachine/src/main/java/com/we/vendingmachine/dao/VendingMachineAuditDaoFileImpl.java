@@ -43,7 +43,7 @@ public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
             output.flush();
             output.close();
         } catch (IOException error) {
-            throw new VendingMachineDaoPersistenceException("-_- No audit entry successfully wrtiten to the audti file", error);
+            throw new VendingMachineDaoPersistenceException("-_- No audit entry successfully wrtiten to the audit file", error);
         }
     }
 }

@@ -86,8 +86,8 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
    private void loadFile() throws VendingMachineDaoPersistenceException {
        try {
             Scanner scanner = new Scanner(
-                        new BufferedReader(
-                           new FileReader(inventoryFile)));
+                                new BufferedReader(
+                                    new FileReader(inventoryFile)));
             while (scanner.hasNextLine()) {
                final String itemAsText = scanner.nextLine();
                final VendingMachineItem itemFromFile = unMarshallItem(itemAsText);

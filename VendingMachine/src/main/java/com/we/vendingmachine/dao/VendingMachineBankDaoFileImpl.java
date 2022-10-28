@@ -37,6 +37,7 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
     final private String DELIMITER = "::";
     @Override
     public UserChange giveChange(UserChange change) throws VendingMachineDaoPersistenceException{
+        //Withdraw coins needed to give user change from inventory then return change to user
         loadCoins();
         final ArrayList<Coin> changeToGive = change.getCoins();
           for (Coin changeCoin : changeToGive) {

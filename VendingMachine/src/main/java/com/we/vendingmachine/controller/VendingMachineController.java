@@ -29,7 +29,6 @@ public class VendingMachineController {
     final int INPUT_MONEY_ID = 10, REFUND_MONEY_ID = 11, EXIT_ID = 12;
     VendingMachineView view;
     VendingMachineServiceLayer service;
-    
     public VendingMachineController(VendingMachineView view, VendingMachineServiceLayer service) {
         this.view = view;
         this.service = service; 
@@ -79,7 +78,7 @@ public class VendingMachineController {
         view.displayGoodbyeMessage();
     }
     private void makeUserPurchase(int choiceOfUser) throws VendingMachineInsufficientFundsException, VendingMachineDaoPersistenceException,
-            VendingMachineItemUnavailableException {
+        VendingMachineItemUnavailableException {
         final VendingMachineItem itemChosen = service.getItem(choiceOfUser);
         final UserChange changeLeft = service.purchaseItem(view.getInputMoney(), itemChosen);
         view.resetInputMoney();

@@ -30,6 +30,9 @@ import com.we.vendingmachine.ui.VendingMachineView;
  * in order to keep code DRY while separating concerns
  * Through the use of file storage the inventory of items
  * remaining after storage persists
+ * 
+ * Additionally, dependency injection is utilized in order to take advantage
+ * of loose coupling
  */
 
 public class App {
