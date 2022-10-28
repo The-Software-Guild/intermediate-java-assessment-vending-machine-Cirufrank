@@ -47,7 +47,10 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     public UserChange purchaseItem(BigDecimal inputMoney, VendingMachineItem item) throws 
             VendingMachineInsufficientFundsException, VendingMachineDaoPersistenceException, 
             VendingMachineItemUnavailableException {
-        determineSufficientFunds(inputMoney, item.getItemCost());
+        //Remove item from inventory, withdraw needed change from inventory, write to the audit 
+        //file when the item was pruchased and the inventory coins withdrawn, and 
+        //calculate user change coins and return the UserChange to the user
+        determineSufficientFunds(inputMoney, item.getItemCost(), item.getItemName());
         determineItemAvailability(item);
         dao.purchaseItem(item.getItemId());
         final UserChange userChange = determineChange(inputMoney, item.getItemCost());
@@ -60,21 +63,24 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
             coinsGivenMessage += currentCoin.getCoinType() + ": " + currentCoin.getCoinTotal() + 
                     " withdrawn | ";
         }
-        String coinBankInventoryReport = "Inventory Updated: " + coinsGivenMessage;
+        String coinBankInventoryReport = "Coin Bank Inventory Updated: " + coinsGivenMessage;
         auditDao.writeAuditEntry(itemPurchaseReport);
         auditDao.writeAuditEntry(coinBankInventoryReport);
         return userChange;
     }
   
-    public void determineSufficientFunds(BigDecimal inputMoney, BigDecimal itemPrice) throws VendingMachineInsufficientFundsException {
+    public void determineSufficientFunds(BigDecimal inputMoney, BigDecimal itemPrice, String itemName) throws VendingMachineInsufficientFundsException {
+        //Ensure the funds input by the user are sufficient to purchase the item chosen
         final int EXACT_AMOUNT = 0;
         final BigDecimal changeLeftOver = inputMoney.subtract(itemPrice);
         if ((changeLeftOver.compareTo(BigDecimal.ZERO) >= EXACT_AMOUNT) != true) {
-            throw new VendingMachineInsufficientFundsException("Funds insufficient "
-                    + "to make specified purchase");
+            final BigDecimal fundsNeeded = determineFundsStillNeeded(inputMoney, itemPrice);
+            throw new VendingMachineInsufficientFundsException("Funds insufficient: $" + fundsNeeded
+                    + " required to make specified purchase of ITEM: " + itemName) ;
         }
     }
     private void determineItemAvailability(VendingMachineItem item) throws VendingMachineItemUnavailableException{
+        //Determine if the item selected is available for purchase
         if (item.getNumOfItems() < ONE_ITEM) {
             throw new VendingMachineItemUnavailableException("We're sorry, " + item.getItemName() + " is out of stock");
         }
@@ -85,6 +91,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     }
  
     public UserChange determineChange(BigDecimal inputMoney, BigDecimal itemPrice) {
+        //Calcuate user change based on remainding funds after item is paid for, and provide
+        //change in the least amount of coins possible
         final int NO_MORE_CHANGE = 0;
         BigDecimal totalChange = inputMoney.subtract(itemPrice);
         final UserChange userChange = new UserChange(totalChange);

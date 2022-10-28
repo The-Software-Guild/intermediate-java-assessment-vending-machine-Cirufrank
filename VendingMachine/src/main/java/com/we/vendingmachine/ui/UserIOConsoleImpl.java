@@ -9,8 +9,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author ciruf
+ * @author Cirũ Franklin (she/they), Software Engineer
+ * @course DI002 Full Stack Development Using Java and React (2210)
+ * @project Assessment: Vending Machine
+ * 
+ * @description This class implements the UserIO interface and acts as a 
+ * console implementation of the input/output functionality of the application
  */
+
 public class UserIOConsoleImpl implements UserIO {
     private Scanner scanner = new Scanner(System.in);
     public void print(String message) {
@@ -23,6 +29,9 @@ public class UserIOConsoleImpl implements UserIO {
     }
     @Override
     public int readItemChoice(String message) {
+        //Continue to prompt user for choice until the string input can 
+        //both be parsed to an integer and is a valid choice available within 
+        //the menu
         final int MIN_CHOICE = 1, MAX_CHOICE = 12;
         boolean invalidChoice = true;
         String stringItemChoice;
@@ -46,6 +55,8 @@ public class UserIOConsoleImpl implements UserIO {
     }
     @Override
     public BigDecimal readBigDecimal(String message) {
+        //Continue to prompt user for input until their input String can be 
+        //parsed to a BigDecimal
         boolean invalidInput = true;
         String stringBigDecimal;
         BigDecimal inputMoney = new BigDecimal("0.00");

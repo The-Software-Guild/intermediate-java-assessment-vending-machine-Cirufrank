@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @description This class acts of the view of the Vending Machine
  * Application and is responsible for all information displayed to 
  * the users of our application
+ * 
  */
 
 public class VendingMachineView {
@@ -88,19 +89,24 @@ public class VendingMachineView {
         io.print("Total money input: $" + inputMoney);
     }
     public void displayMenu(ArrayList<VendingMachineItem> inventory) {
+        io.print(INVENTORY_LIST_BANNER);
+        displayInventoryList(inventory);
+        io.print(CHOICE_10_INPUT_FUNDS_TEXT);
+        io.print(CHOICE_11_REFUND_MONEY_TEXT);
+        io.print(CHOICE_12_EXIT_TEXT);
+    }
+    
+    private void displayInventoryList(ArrayList<VendingMachineItem> inventory) {
+        //Iterate through the sequence of objects within out inventory list and 
+        //display them and their OUT OF STOCK status is applicable to the user
         final String OUT_OF_STOCK_MESSAGE = " OUT OF STOCK";
         final int NONE = 0;
-        io.print(INVENTORY_LIST_BANNER);
         inventory.stream().forEach((item) -> {
             final int totalInInventory = item.getNumOfItems();
             String itemChoiceText = createItemChoiceText(item);
             if (totalInInventory <= NONE) itemChoiceText += OUT_OF_STOCK_MESSAGE;
-            io.print(itemChoiceText);
-            
+            io.print(itemChoiceText); 
         });
-        io.print(CHOICE_10_INPUT_FUNDS_TEXT);
-        io.print(CHOICE_11_REFUND_MONEY_TEXT);
-        io.print(CHOICE_12_EXIT_TEXT);
     }
     private String createItemChoiceText(VendingMachineItem item) {
         return item.getItemId() + "-> " + item.getItemName();

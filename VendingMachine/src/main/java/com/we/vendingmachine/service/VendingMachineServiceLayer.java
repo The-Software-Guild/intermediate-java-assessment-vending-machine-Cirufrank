@@ -54,10 +54,11 @@ public interface VendingMachineServiceLayer {
      *
      * @param inputMony BigDecimal money input by user
      * @param itemPrice BigDecimal price for item that user is attempting to purchase
+     *  @param itemName String name of item attempting to be purchased
      * @return boolean true is funds are greater than or equal to item user is 
      * attempting to purchase and false otherwise
      */
-    public void determineSufficientFunds(BigDecimal inputMoney, BigDecimal itemPrice)
+    public void determineSufficientFunds(BigDecimal inputMoney, BigDecimal itemPrice, String itemName)
             throws VendingMachineInsufficientFundsException;
     /**
      * Determines funds still needed to be input by user in order for purchase to be made
