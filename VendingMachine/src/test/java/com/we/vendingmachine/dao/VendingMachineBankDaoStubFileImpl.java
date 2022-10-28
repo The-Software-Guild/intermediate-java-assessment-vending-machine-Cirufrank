@@ -36,17 +36,18 @@ public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao 
     private String inventoryFile;
     final private String DELIMITER = "::";
     @Override
-    public UserChange giveChange(UserChange change) {
+    public UserChange giveChange(UserChange change) throws VendingMachineDaoPersistenceException{
+        //Withdraw coins needed to give user change from inventory then return change to user
         loadCoins();
         final ArrayList<Coin> changeToGive = change.getCoins();
-          for (Coin changeCoin : changeToGive) {
+          changeToGive.stream().forEach(changeCoin -> {
               final CoinName typeOfChange = changeCoin.getCoinType();
               final Coin inventoryCoin = coinBank.get(typeOfChange);
               final int totalInInventory = inventoryCoin.getCoinTotal();
               final int coinsNeededForChange = changeCoin.getCoinTotal();
               final int remainingCoinsInInventory = totalInInventory - coinsNeededForChange;
               inventoryCoin.setCoinTotal(remainingCoinsInInventory);
-          }
+          });
         writeCoins();
         return change;
     }
@@ -86,20 +87,19 @@ public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao 
             System.out.println("-_- Could not load coin inventory from file");
         }
     }
-    private void writeCoins() {
+    private void writeCoins() throws VendingMachineDaoPersistenceException {
         try {
             PrintWriter output = new PrintWriter(
                                         new FileWriter(inventoryFile));
             ArrayList<Coin> coins = new ArrayList(this.getAllCoins());
-            for (Coin currentCoin : coins) {
-                System.out.println("WRITING: " + currentCoin.toString());
-                 final String coinAsText = marshallCoin(currentCoin);
-                 output.println(coinAsText);
-                 output.flush();
-            }
+            coins.stream().forEach(currentCoin -> {
+                final String coinAsText = marshallCoin(currentCoin);
+                output.println(coinAsText);
+                output.flush();
+            });
             output.close();
         } catch (IOException error) {
-            System.out.println("-_- Could not write coin inventory to file");
+            throw new VendingMachineDaoPersistenceException("-_- Could not write coin inventory to file", error);
         }
     }
     public List<Coin> getAllCoins() {

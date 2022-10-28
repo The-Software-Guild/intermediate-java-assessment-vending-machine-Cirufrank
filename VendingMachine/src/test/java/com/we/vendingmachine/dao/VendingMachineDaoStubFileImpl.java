@@ -56,7 +56,7 @@ public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
        return item;
    }
    @Override
-   public VendingMachineItem purchaseItem(int itemId) {
+   public VendingMachineItem purchaseItem(int itemId) throws VendingMachineDaoPersistenceException{
        loadFile();
        final int ONE_ITEM_TO_REMOVE = 1;
        final VendingMachineItem itemToPurchase = getItem(itemId);
@@ -102,20 +102,20 @@ public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
        }
        
    }
-   private void writeFile() {
+   private void writeFile() throws VendingMachineDaoPersistenceException {
        try {
            PrintWriter output = new PrintWriter(
-                                    new FileWriter(
+                                new FileWriter(
                                     inventoryFile));
            ArrayList<VendingMachineItem> listOfItems = new ArrayList(getAllItems());
-           for (VendingMachineItem currentItem : listOfItems) {
+           listOfItems.stream().forEach(currentItem -> {
                String itemAsText = marshallItem(currentItem);
                output.println(itemAsText);
                output.flush();
-           }
+           });
            output.close();
        } catch(IOException error) {
-           System.out.println("-_- Could not write items back to inventory file");
+           throw new VendingMachineDaoPersistenceException("-_- Could not write items back to inventory file", error);
        }
    }
 }

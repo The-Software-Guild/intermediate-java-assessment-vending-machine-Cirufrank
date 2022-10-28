@@ -14,3 +14,5 @@
 2022-10-28 11:30:42: Inventory Updated: QUARTER: 0 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
 2022-10-28 11:30:59: Item Purchased: ID: 5 | Item Name: Emerald Nuts: 100 Calorie Almond Pack | Quantity: 1
 2022-10-28 11:30:59: Inventory Updated: QUARTER: 0 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 01:41:18: Item Purchased: ID: 1 | Item Name: Kashi: Honey Toasted Crunchy Granola Bar | Quantity: 1
+2022-10-28 01:41:18: Coin Bank Inventory Updated: QUARTER: 2 withdrawn | NICKEL: 1 withdrawn | DIME: 1 withdrawn | PENNY: 0 withdrawn | 

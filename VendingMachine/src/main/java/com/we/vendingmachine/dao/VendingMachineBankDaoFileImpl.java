@@ -40,15 +40,15 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
         //Withdraw coins needed to give user change from inventory then return change to user
         loadCoins();
         final ArrayList<Coin> changeToGive = change.getCoins();
-          for (Coin changeCoin : changeToGive) {
+          changeToGive.stream().forEach(changeCoin -> {
               final CoinName typeOfChange = changeCoin.getCoinType();
               final Coin inventoryCoin = coinBank.get(typeOfChange);
               final int totalInInventory = inventoryCoin.getCoinTotal();
               final int coinsNeededForChange = changeCoin.getCoinTotal();
               final int remainingCoinsInInventory = totalInInventory - coinsNeededForChange;
               inventoryCoin.setCoinTotal(remainingCoinsInInventory);
-          }
-          writeCoins();
+          });
+        writeCoins();
         return change;
     }
     public VendingMachineBankDaoFileImpl() {
@@ -90,11 +90,11 @@ public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
             PrintWriter output = new PrintWriter(
                                         new FileWriter(inventoryFile));
             ArrayList<Coin> coins = new ArrayList(this.getAllCoins());
-            for (Coin currentCoin : coins) {
-                 final String coinAsText = marshallCoin(currentCoin);
-                 output.println(coinAsText);
-                 output.flush();
-            }
+            coins.stream().forEach(currentCoin -> {
+                final String coinAsText = marshallCoin(currentCoin);
+                output.println(coinAsText);
+                output.flush();
+            });
             output.close();
         } catch (IOException error) {
             throw new VendingMachineDaoPersistenceException("-_- Could not write coin inventory to file", error);

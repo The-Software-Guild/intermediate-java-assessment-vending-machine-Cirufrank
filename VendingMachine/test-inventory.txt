@@ -1,6 +1,6 @@
 1::Test: Crispy Healthy Snack::1.35::100
 2::Test: Vanilla Almond Bar::0.75::1000
-3::Testy: Crunchy Oats and Honey Granola Bar::0.50::99986
+3::Testy: Crunchy Oats and Honey Granola Bar::0.50::99981
 4::Test: Apple Chips::0.50::2
 5::Test: 100 Calorie Almond Pack::0.25::2
 6::Test: Dried Fruit::0.75::10

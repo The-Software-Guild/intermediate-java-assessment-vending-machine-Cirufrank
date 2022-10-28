@@ -74,7 +74,7 @@ public class VendingMachineServiceLayerImplTest {
         assertEquals(previousTotalInStock, updatedTestItem.getNumOfItems() + ONE_ITEM, "The number of an"
                 + " item in stock should be decremented by one after a pruchase is made");
         //Test that the coin bank inventory reflects the withdrawn quarters
-        assertNotEquals(previousQuartersInStock, currentQuartersInStock + ACCURATE_QUARTER_CHANGE_TOTAL, "The "
+        assertEquals(previousQuartersInStock, currentQuartersInStock + ACCURATE_QUARTER_CHANGE_TOTAL, "The "
         + ACCURATE_QUARTER_CHANGE_TOTAL + " quarters given in change should be reflected within the "
                 + "coin bank inventory after purchase");
     }

@@ -109,7 +109,7 @@ public class VendingMachineView {
         });
     }
     private String createItemChoiceText(VendingMachineItem item) {
-        return item.getItemId() + "-> " + item.getItemName();
+        return item.getItemId() + "-> $" + item.getItemCost() + ": " + item.getItemName();
     }
     public void displayUserChangeAndItem(VendingMachineItem item, UserChange change) {
         final String itemPurchasedMessage = "Here is your item: " + item.getItemName();

@@ -105,11 +105,11 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
                                 new FileWriter(
                                     inventoryFile));
            ArrayList<VendingMachineItem> listOfItems = new ArrayList(getAllItems());
-           for (VendingMachineItem currentItem : listOfItems) {
+           listOfItems.stream().forEach(currentItem -> {
                String itemAsText = marshallItem(currentItem);
                output.println(itemAsText);
                output.flush();
-           }
+           });
            output.close();
        } catch(IOException error) {
            throw new VendingMachineDaoPersistenceException("-_- Could not write items back to inventory file", error);
