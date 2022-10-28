@@ -74,7 +74,7 @@ public class VendingMachineController {
         view.resetInputMoney();
     }
     private void exitUser() {
-        view.displayRefundedExitMoney();
+        view.displayRefundedMoney();
         view.displayGoodbyeMessage();
     }
     private void makeUserPurchase(int choiceOfUser) throws VendingMachineInsufficientFundsException, VendingMachineDaoPersistenceException,

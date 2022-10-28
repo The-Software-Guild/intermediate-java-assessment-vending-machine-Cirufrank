@@ -1,4 +1,4 @@
-1::Kashi: Honey Toasted Crunchy Granola Bar::1.35::97
+1::Kashi: Honey Toasted Crunchy Granola Bar::1.35::95
 2::Luna: Vanilla Almond Bar::0.75::1000
 3::Nature Valley: Crunchy Oats and Honey Granola Bar::0.50::3
 4::Bare Fruit: Apple Chips::0.50::2

@@ -22,10 +22,12 @@ import java.util.ArrayList;
  */
 
 public class VendingMachineView {
+    final int INT_NO_MONEY = 0;
     final BigDecimal NO_MONEY = new BigDecimal("0.00");
     BigDecimal inputMoney = new BigDecimal("0.00");
     final String INPUT_MONEY_PROMPT = "Please input amount in this format: 0.00",
             ITEM_CHOICE_PROMPT = "Please enter choice below",
+            NO_MONEY_TO_REFUND_MESSAGE = "No money to refund",
             WELCOME_BANNER = "==== WELCOME TO THE VENDING MACHINE ===",
             REFUND_BANNER = "=== REFUND ===",
             ERROR_BANNER = "=== ERROR ===",
@@ -72,12 +74,9 @@ public class VendingMachineView {
         io.print(REFUND_BANNER);
     }
     public void displayRefundedMoney() {
-        io.print("Here is your $" + inputMoney + " back");
-    }
-    public void displayRefundedExitMoney() {
-        final int INT_NO_MONEY = 0;
         if (inputMoney.compareTo(NO_MONEY) > INT_NO_MONEY)
         io.print("Here is your $" + inputMoney + " back");
+        else io.print(NO_MONEY_TO_REFUND_MESSAGE);
     }
     public void updateInputMoney(BigDecimal additionalMoney) {
         this.inputMoney = this.inputMoney.add(additionalMoney);

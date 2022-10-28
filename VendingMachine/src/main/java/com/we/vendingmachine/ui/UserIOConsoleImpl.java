@@ -5,6 +5,7 @@
 package com.we.vendingmachine.ui;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 /**
@@ -57,13 +58,16 @@ public class UserIOConsoleImpl implements UserIO {
     public BigDecimal readBigDecimal(String message) {
         //Continue to prompt user for input until their input String can be 
         //parsed to a BigDecimal
+        final int TWO_DECIMAL_PLACES = 2;
         boolean invalidInput = true;
         String stringBigDecimal;
         BigDecimal inputMoney = new BigDecimal("0.00");
         while(invalidInput) {
             try {
                 stringBigDecimal = readString(message);
-                inputMoney = new BigDecimal(stringBigDecimal);
+                inputMoney = new BigDecimal(stringBigDecimal).
+                        setScale(TWO_DECIMAL_PLACES, 
+                                RoundingMode.HALF_UP);
                 invalidInput = false;
                 return inputMoney;
             } catch(NumberFormatException error) {
