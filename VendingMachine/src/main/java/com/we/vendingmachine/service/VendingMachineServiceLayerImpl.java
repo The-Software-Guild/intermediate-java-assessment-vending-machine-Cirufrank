@@ -91,5 +91,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         }
         return userChange;
     }
+    public VendingMachineItem getItem(int itemId) {
+        return dao.getItem(itemId);
+    }
 
 }

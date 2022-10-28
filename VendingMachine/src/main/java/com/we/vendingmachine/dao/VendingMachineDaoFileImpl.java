@@ -34,10 +34,10 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
    final private Map <Integer, VendingMachineItem> vendingMachineItems = new HashMap<>();
    private String inventoryFile;
    
-   VendingMachineDaoFileImpl() {
+   public VendingMachineDaoFileImpl() {
        inventoryFile = "inventory.txt";
    }
-   VendingMachineDaoFileImpl(String inventoryFile) {
+   public VendingMachineDaoFileImpl(String inventoryFile) {
        this.inventoryFile = inventoryFile;
    }
    

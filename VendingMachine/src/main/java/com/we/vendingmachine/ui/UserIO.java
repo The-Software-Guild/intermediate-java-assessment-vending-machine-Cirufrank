@@ -25,6 +25,14 @@ public interface UserIO {
      */
     public void print(String message);
     /**
+     * Prompts user for item choice until a valid integer has been entered
+     *
+     * @param message message to be displayed to user
+     * @return int representing item or refund choice
+     */
+    public int readItemChoice(String message);
+    
+    /**
      * Prompts user to enter string input then
      * returns the string input
      *

@@ -23,6 +23,13 @@ import java.math.BigDecimal;
  * paid)
  */
 public interface VendingMachineServiceLayer {
+     /**
+     * Retrieves a VendingMachineITem from inventory for viewing
+     *
+     * @param itemId ID of item to retrieve
+     * @return VendingMachineItem retrieved from the inventory
+     */
+    public VendingMachineItem getItem(int itemId);
     /**
      * Allows user to buy a item and returns the item if a successful purchase is made
      * or null otherwise

@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
  * @project Assessment: Vending Machine
  * 
  * @description This class implements the audit file of our vending machine that 
- * keeps track of when users purchased items and how much change was returend to them
+ * keeps track of when users purchased items and how much change was returned to them
  */
 
 public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {

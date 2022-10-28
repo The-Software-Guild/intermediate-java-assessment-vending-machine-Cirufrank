@@ -5,6 +5,19 @@
 
 package com.we.vendingmachine;
 
+import com.we.vendingmachine.controller.VendingMachineController;
+import com.we.vendingmachine.dao.VendingMachineAuditDao;
+import com.we.vendingmachine.dao.VendingMachineAuditDaoFileImpl;
+import com.we.vendingmachine.dao.VendingMachineBankDao;
+import com.we.vendingmachine.dao.VendingMachineBankDaoFileImpl;
+import com.we.vendingmachine.dao.VendingMachineDao;
+import com.we.vendingmachine.dao.VendingMachineDaoFileImpl;
+import com.we.vendingmachine.service.VendingMachineServiceLayer;
+import com.we.vendingmachine.service.VendingMachineServiceLayerImpl;
+import com.we.vendingmachine.ui.UserIO;
+import com.we.vendingmachine.ui.UserIOConsoleImpl;
+import com.we.vendingmachine.ui.VendingMachineView;
+
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
@@ -20,8 +33,14 @@ package com.we.vendingmachine;
  */
 
 public class App {
-
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        UserIO myIO = new UserIOConsoleImpl();
+        VendingMachineView myView = new VendingMachineView(myIO);
+        VendingMachineDao myDao = new VendingMachineDaoFileImpl();
+        VendingMachineAuditDao myAuditDao = new VendingMachineAuditDaoFileImpl();
+        VendingMachineBankDao myBankDao = new VendingMachineBankDaoFileImpl();
+        VendingMachineServiceLayer myService = new VendingMachineServiceLayerImpl(myDao, myBankDao, myAuditDao);
+        VendingMachineController controller = new VendingMachineController(myView, myService);
+        controller.run();
     }
 }

@@ -41,11 +41,17 @@ public class UserChange {
     public Coin getQuarters() {
         return QUARTERS;
     }
+    public int getTotalQuarters() {
+        return QUARTERS.getCoinTotal();
+    }
     public void setTotalQuarters(int newQuartersAmount) {
         QUARTERS.setCoinTotal(newQuartersAmount);
     }
     public Coin getNickels() {
         return NICKELS;
+    }
+    public int getTotalNickels() {
+        return NICKELS.getCoinTotal();
     }
     public void setTotalNickels(int newNickelsAmount) {
         NICKELS.setCoinTotal(newNickelsAmount);
@@ -53,11 +59,17 @@ public class UserChange {
     public Coin getDimes() {
         return DIMES;
     }
+    public int getTotalDimes() {
+        return DIMES.getCoinTotal();
+    }
     public void setTotalDimes(int newDimesAmount) {
         DIMES.setCoinTotal(newDimesAmount);
     }
     public Coin getPennines() {
         return PENNIES;
+    }
+    public int getTotalPennies() {
+        return PENNIES.getCoinTotal();
     }
     public void setTotalPennies(int newPenniesAmount) {
         PENNIES.setCoinTotal(newPenniesAmount);
@@ -65,6 +77,9 @@ public class UserChange {
     public ArrayList<Coin> getCoins() {
         final ArrayList<Coin> coinList = new ArrayList<Coin>(Arrays.asList(QUARTERS, NICKELS, DIMES, PENNIES));
         return coinList;
+    }
+    public BigDecimal getTotalChange() {
+        return totalChange;
     }
     public void updateCoinAmount(Coin coin) {
         final CoinName coinName = coin.getCoinType();
