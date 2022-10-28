@@ -1,0 +1,47 @@
+2022-10-27 03:08:21: This is a test
+2022-10-27 06:15:33: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-27 06:17:27: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-27 06:18:32: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-27 06:19:24: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-27 06:24:57: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-27 06:25:40: Item Purchsed: ID: 3 | Item Name: Nature Valley: Crunchy Oats and Honey Granola Bar
+2022-10-27 06:25:40: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-27 06:27:10: Item Purchsed: ID: 3 | Item Name: Nature Valley: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-27 06:27:10: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:10:16: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:10:16: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:43:03: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:43:03: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:44:17: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:44:17: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:46:34: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:46:34: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:54:41: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:54:41: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:54:41: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:54:41: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:56:47: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:56:47: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:56:47: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:56:47: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:57:35: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:57:35: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 11:57:35: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 11:57:35: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:00:59: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:00:59: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:00:59: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:00:59: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:02:34: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:02:34: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:03:40: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:03:40: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:05:40: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:05:40: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:07:47: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:07:47: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:39:11: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:39:11: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:39:55: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-28 12:39:55: Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-28 12:59:06: This is a test-963557654
