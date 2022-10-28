@@ -24,7 +24,7 @@ import java.util.Scanner;
  * @course DI002 Full Stack Development Using Java and React (2210)
  * @project Assessment: Vending Machine
  * 
- * @description This class implements the methods declared by the
+ * @description TEST STUB: This class implements the methods declared by the
  * VendingMachineDao interface that allows our application to read, 
  * retrieve, and update our inventory
  * 
@@ -42,9 +42,6 @@ public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
    public VendingMachineDaoStubFileImpl(String testInventoryTxt) {
        inventoryFile = testInventoryTxt;
    }
-//   public VendingMachineDaoStubFileImpl(String inventoryFile) {
-//       this.inventoryFile = inventoryFile;
-//   }
    
    @Override
    public List <VendingMachineItem> getAllItems() {
@@ -69,6 +66,7 @@ public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
        writeFile();
        return itemToPurchase;
    }
+   //TEST STUB has this method public
    public VendingMachineItem unMarshallItem(String itemAsText) {
        final int ID_INDEX = 0, NAME_INDEX = 1, COST_INDEX = 2, TOTAL_INDEX = 3;
        final String[] itemTokens = itemAsText.split(DELIMITER);
@@ -80,7 +78,7 @@ public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
                itemName, itemCost, totalItems);
        return itemFromFile;
    }
-   
+   //TEST STUB has this method public
    public String marshallItem(VendingMachineItem item) {
        String itemAsText = item.getItemId() + DELIMITER
                + item.getItemName() + DELIMITER

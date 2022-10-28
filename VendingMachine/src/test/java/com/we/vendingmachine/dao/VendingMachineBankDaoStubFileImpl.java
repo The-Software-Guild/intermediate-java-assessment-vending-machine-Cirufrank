@@ -56,6 +56,7 @@ public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao 
     public VendingMachineBankDaoStubFileImpl(String coinInventoryFile) {
         this.inventoryFile = coinInventoryFile;
     }
+    //TEST STUB has this method public
     public Coin unMarshallCoin(String coinAsText) {
         final int COIN_NAME_INDEX = 0, TOTAL_COINS_INDEX = 1;
         final String[] coinTokens = coinAsText.split(DELIMITER);
@@ -64,6 +65,7 @@ public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao 
         final Coin coin = new Coin(coinType, totalCoins);
         return coin;
     }
+    //TEST STUB has this method public
     public String marshallCoin(Coin coin) {
         String coinAsText = "" + coin.getCoinType()
                 + DELIMITER + coin.getCoinTotal();

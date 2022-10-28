@@ -59,7 +59,7 @@ public class VendingMachineItemTest {
         
     }
     @Test
-    @DisplayName("Test Vending Machine Item setter method")
+    @DisplayName("Test Vending Machine Item setter methods")
     public void testSetterMethod() {
         VendingMachineItem vmi1 = new VendingMachineItem(1, "Banana");
         VendingMachineItem vmi2 = new VendingMachineItem(2, "Banana", new BigDecimal("2.50"));

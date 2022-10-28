@@ -7,6 +7,7 @@ package com.we.vendingmachine.dao;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 /**
@@ -27,14 +29,21 @@ import org.junit.jupiter.api.extension.ExtendWith;
  */
 
 @ExtendWith(VendingMachineAuditDaoParameterResolver.class)
+@DisplayName("Vending Machince Audit Data Access Object Test")
 public class VendingMachineAuditDaoFileImplTest {
     
     public VendingMachineAuditDaoFileImplTest() {
     }
-
+    
+    //Tests that after an audit entry is written, the most recent audit entry contains it
+    //Uses a Random object to help ensure entries are unique to confirm the audit entry line was
+    //written
     @Test
-    public void testWriteAuditEntry(VendingMachineAuditDaoFileImpl testAuditDao) {
-        final String MESSAGE = "This is a test";
+    @DisplayName("Test wrtieAuditEntryMethod")
+    public void testWriteAuditEntry(VendingMachineAuditDaoFileImpl testAuditDao) throws VendingMachineDaoPersistenceException {
+       
+        final Random random = new Random();
+        final String MESSAGE = "This is a test" + random.nextInt();
         try {
             String mostRecentTestEntry = "";
             testAuditDao.writeAuditEntry(MESSAGE);
@@ -44,7 +53,8 @@ public class VendingMachineAuditDaoFileImplTest {
                 mostRecentTestEntry = scanner.nextLine();
             }
             scanner.close();
-            assertTrue(mostRecentTestEntry.contains(MESSAGE));
+            assertTrue(mostRecentTestEntry.contains(MESSAGE), "THe aduit log should contain "
+                    + "entry " + MESSAGE);
         } catch(IOException error) {
             fail("Message could not be read from file");
         }
