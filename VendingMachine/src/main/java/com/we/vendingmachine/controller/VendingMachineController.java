@@ -82,6 +82,7 @@ public class VendingMachineController {
             VendingMachineItemUnavailableException {
         final VendingMachineItem itemChosen = service.getItem(choiceOfUser);
         final UserChange changeLeft = service.purchaseItem(view.getInputMoney(), itemChosen);
+        view.resetInputMoney();
         view.displayUserChangeAndItem(itemChosen, changeLeft);
     }
     private void displayMenu() throws VendingMachineDaoPersistenceException {

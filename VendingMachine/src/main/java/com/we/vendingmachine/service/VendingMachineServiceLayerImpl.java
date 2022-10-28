@@ -47,8 +47,9 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     public UserChange purchaseItem(BigDecimal inputMoney, VendingMachineItem item) throws 
             VendingMachineInsufficientFundsException, VendingMachineDaoPersistenceException, 
             VendingMachineItemUnavailableException {
-        determineItemAvailability(item);
         determineSufficientFunds(inputMoney, item.getItemCost());
+        determineItemAvailability(item);
+        dao.purchaseItem(item.getItemId());
         final UserChange userChange = determineChange(inputMoney, item.getItemCost());
         final String itemPurchaseReport = "Item Purchased: ID: " + item.getItemId() 
                 + " | Item Name: " + item.getItemName() + " | Quantity: " + ONE_ITEM;
