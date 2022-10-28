@@ -39,8 +39,8 @@ public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
    final private Map <Integer, VendingMachineItem> vendingMachineItems = new HashMap<>();
    private String inventoryFile;
    
-   public VendingMachineDaoStubFileImpl(String testinventorytxt) {
-       inventoryFile = "inventory.txt";
+   public VendingMachineDaoStubFileImpl(String testInventoryTxt) {
+       inventoryFile = testInventoryTxt;
    }
 //   public VendingMachineDaoStubFileImpl(String inventoryFile) {
 //       this.inventoryFile = inventoryFile;
