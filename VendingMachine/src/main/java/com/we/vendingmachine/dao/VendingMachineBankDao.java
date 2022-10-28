@@ -4,8 +4,11 @@
  */
 package com.we.vendingmachine.dao;
 
+import com.we.vendingmachine.dto.Coin;
 import com.we.vendingmachine.dto.UserChange;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,4 +30,6 @@ public interface VendingMachineBankDao {
      * @return UserChange object representing the change to be given back to the user
      */
     public UserChange giveChange(UserChange change);
+
+    public List<Coin> getAllCoins();
 }

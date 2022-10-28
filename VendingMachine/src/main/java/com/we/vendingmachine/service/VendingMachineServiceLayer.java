@@ -4,6 +4,7 @@
  */
 package com.we.vendingmachine.service;
 
+import com.we.vendingmachine.dto.UserChange;
 import com.we.vendingmachine.dto.VendingMachineItem;
 import java.math.BigDecimal;
 
@@ -31,7 +32,7 @@ public interface VendingMachineServiceLayer {
      * @return VendingMachineItem purchase if successful purchase is made, and 
      * null if not
      */
-    public VendingMachineItem purchaseItem(BigDecimal inputMoney, VendingMachineItem item);
+    public UserChange purchaseItem(BigDecimal inputMoney, VendingMachineItem item) throws VendingMachineInsufficientFundsException;
     /**
      * Determines if input money is sufficient to purchase chosen item
      *
@@ -40,7 +41,8 @@ public interface VendingMachineServiceLayer {
      * @return boolean true is funds are greater than or equal to item user is 
      * attempting to purchase and false otherwise
      */
-    public boolean determineSufficientFunds(BigDecimal inputMoney, BigDecimal itemPrice);
+    public void determineSufficientFunds(BigDecimal inputMoney, BigDecimal itemPrice)
+            throws VendingMachineInsufficientFundsException;
     /**
      * Determines funds still needed to be input by user in order for purchase to be made
      *
@@ -56,5 +58,5 @@ public interface VendingMachineServiceLayer {
      * @param itemPrice BigDecimal price for item that user is attempting to purchase
      * @return BigDecimal representing the change to be given back to the user
      */
-    public BigDecimal determineChange(BigDecimal inputMoney, BigDecimal itemPrice);
+    public UserChange determineChange(BigDecimal inputMoney, BigDecimal itemPrice);
 }

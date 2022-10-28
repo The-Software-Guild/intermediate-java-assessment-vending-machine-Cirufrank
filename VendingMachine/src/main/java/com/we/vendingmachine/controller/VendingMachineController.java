@@ -16,5 +16,9 @@ package com.we.vendingmachine.controller;
  */
 
 public class VendingMachineController {
-    
+    VendingMachineView view;
+    VendingMachineServiceLayer service;
+    public void run() {
+        
+    }
 }

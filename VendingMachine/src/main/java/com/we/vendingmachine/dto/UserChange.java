@@ -21,18 +21,23 @@ import java.util.List;
  */
 
 public class UserChange {
-    final private int NO_COINS = 0;
+    final private static int NO_COINS = 0;
     final private Coin QUARTERS = new Coin(CoinName.QUARTER, NO_COINS);
     final private Coin NICKELS = new Coin(CoinName.NICKEL, NO_COINS);
     final private Coin DIMES = new Coin(CoinName.DIME, NO_COINS);
     final private Coin PENNIES = new Coin(CoinName.PENNY, NO_COINS);
-
+    final static public Coin QUARTER = new Coin(CoinName.QUARTER, NO_COINS),
+            DIME = new Coin(CoinName.DIME, NO_COINS),
+            NICKEL = new Coin(CoinName.NICKEL, NO_COINS),
+            PENNY = new Coin(CoinName.PENNY, NO_COINS);
+    
+    
     private BigDecimal totalChange;
     
     public UserChange(BigDecimal userChange) {
         this.totalChange = userChange;
     }
-    
+    final static public Coin[] VAL_DESC_COIN_LIST = {QUARTER, DIME, NICKEL, PENNY};
     public Coin getQuarters() {
         return QUARTERS;
     }
