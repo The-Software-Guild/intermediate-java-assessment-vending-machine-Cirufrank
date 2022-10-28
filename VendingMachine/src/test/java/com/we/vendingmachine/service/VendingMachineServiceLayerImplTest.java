@@ -42,7 +42,7 @@ public class VendingMachineServiceLayerImplTest {
     
     public VendingMachineServiceLayerImplTest() {
     }
-    //Tests that after an item is pruchased the coin inventory is updated with the number of change coins withdrawn,
+    //Tests that after an item is purchased the coin inventory is updated with the number of change coins withdrawn,
     //the item inventory is updated with the quantity of the item removed, and the proper change is returned to the user
     @ParameterizedTest
     @ValueSource(ints = {3})
