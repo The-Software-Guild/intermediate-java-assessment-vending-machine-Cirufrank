@@ -60,3 +60,19 @@
 2022-10-31 07:53:23: Coin Bank Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
 2022-10-31 08:18:22: This is a test1033615657
 2022-10-31 08:34:53: This is a test810564450
+2022-10-31 10:55:21: This is a test-1852668724
+2022-10-31 10:55:22: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-31 10:55:22: Coin Bank Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-31 11:05:10: This is a test-1810236538
+2022-10-31 11:05:11: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-31 11:05:11: Coin Bank Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-31 11:22:11: This is a test1498396150
+2022-10-31 12:27:52: This is a test1840089220
+2022-10-31 01:43:48: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-31 01:43:48: Coin Bank Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-31 01:50:18: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-31 01:50:18: Coin Bank Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 
+2022-10-31 01:51:58: This is a test-453630223
+2022-10-31 01:53:57: This is a test-2090176883
+2022-10-31 01:54:02: Item Purchased: ID: 3 | Item Name: Testy: Crunchy Oats and Honey Granola Bar | Quantity: 1
+2022-10-31 01:54:02: Coin Bank Inventory Updated: QUARTER: 6 withdrawn | NICKEL: 0 withdrawn | DIME: 0 withdrawn | PENNY: 0 withdrawn | 

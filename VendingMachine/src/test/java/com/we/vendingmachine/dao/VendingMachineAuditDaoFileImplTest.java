@@ -22,7 +22,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class automates the Unit tests for the 
  * VendingMachineAuditDao using JUnit
@@ -39,8 +39,8 @@ public class VendingMachineAuditDaoFileImplTest {
     //Uses a Random object to help ensure entries are unique to confirm the audit entry line was
     //written
     @Test
-    @DisplayName("Test wrtieAuditEntryMethod")
-    public void testWriteAuditEntry(VendingMachineAuditDaoFileImpl testAuditDao) throws VendingMachineDaoPersistenceException {
+    @DisplayName("Test writeAuditEntryMethod")
+    public void testWriteAuditEntry(VendingMachineAuditDaoStubFileImpl testAuditDao) throws VendingMachineDaoPersistenceException {
        
         final Random random = new Random();
         final String MESSAGE = "This is a test" + random.nextInt();

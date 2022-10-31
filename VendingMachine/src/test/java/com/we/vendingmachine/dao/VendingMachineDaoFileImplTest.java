@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class automates the Unit tests for the 
  * VendingMachineDao using JUnit

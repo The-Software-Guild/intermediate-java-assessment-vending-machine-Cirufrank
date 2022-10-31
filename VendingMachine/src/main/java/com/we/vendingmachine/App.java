@@ -17,12 +17,13 @@ import com.we.vendingmachine.service.VendingMachineServiceLayerImpl;
 import com.we.vendingmachine.ui.UserIO;
 import com.we.vendingmachine.ui.UserIOConsoleImpl;
 import com.we.vendingmachine.ui.VendingMachineView;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This application allows users to read and update
  * vending machine items by simulating valid purchase of them
@@ -35,17 +36,28 @@ import com.we.vendingmachine.ui.VendingMachineView;
  * 
  * Additionally, dependency injection is utilized in order to take advantage
  * of loose coupling
+ * 
+ * Lastly, this application is updated to use Spring DI for dependency injection
+ *
+ * 
+ * 
  */
 
 public class App {
     public static void main(String[] args) {
-        UserIO myIO = new UserIOConsoleImpl();
-        VendingMachineView myView = new VendingMachineView(myIO);
-        VendingMachineDao myDao = new VendingMachineDaoFileImpl();
-        VendingMachineAuditDao myAuditDao = new VendingMachineAuditDaoFileImpl();
-        VendingMachineBankDao myBankDao = new VendingMachineBankDaoFileImpl();
-        VendingMachineServiceLayer myService = new VendingMachineServiceLayerImpl(myDao, myBankDao, myAuditDao);
-        VendingMachineController controller = new VendingMachineController(myView, myService);
-        controller.run();
+//        UserIO myIO = new UserIOConsoleImpl();
+//        VendingMachineView myView = new VendingMachineView(myIO);
+//        VendingMachineDao myDao = new VendingMachineDaoFileImpl();
+//        VendingMachineAuditDao myAuditDao = new VendingMachineAuditDaoFileImpl();
+//        VendingMachineBankDao myBankDao = new VendingMachineBankDaoFileImpl();
+//        VendingMachineServiceLayer myService = new VendingMachineServiceLayerImpl(myDao, myBankDao, myAuditDao);
+//        VendingMachineController controller = new VendingMachineController(myView, myService);
+//        controller.run();
+          AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext();
+          appContext.scan("com.we.vendingmachine");
+          appContext.refresh();
+          
+          VendingMachineController controller = appContext.getBean("vendingMachineController", VendingMachineController.class);
+          controller.run();
     }
 }

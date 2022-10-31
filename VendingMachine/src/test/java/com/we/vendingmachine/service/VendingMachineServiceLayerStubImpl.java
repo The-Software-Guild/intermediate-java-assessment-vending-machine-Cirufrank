@@ -5,9 +5,12 @@
 package com.we.vendingmachine.service;
 
 import com.we.vendingmachine.dao.VendingMachineAuditDao;
+import com.we.vendingmachine.dao.VendingMachineAuditDaoStubFileImpl;
 import com.we.vendingmachine.dao.VendingMachineBankDao;
+import com.we.vendingmachine.dao.VendingMachineBankDaoStubFileImpl;
 import com.we.vendingmachine.dao.VendingMachineDao;
 import com.we.vendingmachine.dao.VendingMachineDaoPersistenceException;
+import com.we.vendingmachine.dao.VendingMachineDaoStubFileImpl;
 import com.we.vendingmachine.dto.Coin;
 import com.we.vendingmachine.dto.UserChange;
 import com.we.vendingmachine.dto.VendingMachineItem;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 
 /**
@@ -26,7 +29,7 @@ import org.springframework.context.annotation.Primary;
  * @course DI002 Full Stack Development Using Java and React (2210)
  * @project Assessment: Vending Machine with Spring DI
  * 
- * @description This class implements the VendingMachineService Layer interface 
+ * @description TEST STUB: This class implements the VendingMachineService Layer interface 
  * and the methods responsible for the Vending Machine's business logic of our application
  * 
  * These methods should be available to perform calculations the determine when to 
@@ -36,14 +39,19 @@ import org.springframework.context.annotation.Primary;
  * paid)
  */
 @Component
-@Primary
-public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer {
+public class VendingMachineServiceLayerStubImpl implements VendingMachineServiceLayer {
     final private int ONE_ITEM = 1;
-    private VendingMachineDao dao;
-    private VendingMachineBankDao bankDao;
-    private VendingMachineAuditDao auditDao;
     @Autowired
-    public VendingMachineServiceLayerImpl(VendingMachineDao dao, VendingMachineBankDao bankDao,
+    @Qualifier("vendingMachineDaoStubFileImpl")
+    private VendingMachineDao dao;
+    @Autowired
+    @Qualifier("vendingMachineBankDaoStubFileImpl")
+    private VendingMachineBankDao bankDao;
+    @Autowired
+    @Qualifier("vendingMachineAuditDaoStubFileImpl")
+    private VendingMachineAuditDao auditDao;
+
+    public VendingMachineServiceLayerStubImpl(VendingMachineDao dao, VendingMachineBankDao bankDao,
             VendingMachineAuditDao auditDao) {
         this.dao = dao;
         this.bankDao = bankDao;

@@ -19,18 +19,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description TEST STUB: This class is a file implementation of the VendingMachineBankDao
  * and acts as the DAO responsible for reading from and updating/writing to the 
  * coin bank inventory file
  */
-
+@Component
 public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao {
     final private Map<CoinName, Coin> coinBank = new HashMap<>();
     private String inventoryFile;
@@ -54,7 +57,8 @@ public class VendingMachineBankDaoStubFileImpl implements VendingMachineBankDao 
     public VendingMachineBankDaoStubFileImpl() {
         inventoryFile  = "coin-inventory.txt";
     }
-    public VendingMachineBankDaoStubFileImpl(String coinInventoryFile) {
+    @Autowired
+    public VendingMachineBankDaoStubFileImpl(@Value("test-coin-inventory.txt") String coinInventoryFile) {
         this.inventoryFile = coinInventoryFile;
     }
     //TEST STUB has this method public

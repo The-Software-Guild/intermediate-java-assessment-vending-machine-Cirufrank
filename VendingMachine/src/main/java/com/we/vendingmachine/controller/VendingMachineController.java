@@ -11,24 +11,28 @@ import com.we.vendingmachine.service.VendingMachineInsufficientFundsException;
 import com.we.vendingmachine.service.VendingMachineItemUnavailableException;
 import com.we.vendingmachine.service.VendingMachineServiceLayer;
 import com.we.vendingmachine.ui.VendingMachineView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class acts as the controller of our application
  * and is the brains that communicates directly with the view and service 
  * layers of our application to control item purchase flow
  */
-
+@Component
 public class VendingMachineController {
     private boolean usingMachine = true;
     final int INPUT_MONEY_ID = 10, REFUND_MONEY_ID = 11, EXIT_ID = 12;
     VendingMachineView view;
     VendingMachineServiceLayer service;
+    
+    @Autowired
     public VendingMachineController(VendingMachineView view, VendingMachineServiceLayer service) {
         this.view = view;
         this.service = service; 

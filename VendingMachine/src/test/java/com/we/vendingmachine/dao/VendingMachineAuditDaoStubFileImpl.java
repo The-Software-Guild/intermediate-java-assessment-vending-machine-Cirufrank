@@ -9,28 +9,29 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Vending Machine with Spring DI
+ * @project Assessment: Vending Machine with Spring DI
  * 
- * @description This class implements the audit file of our vending machine that 
+ * @description TEST STUB: This class implements the audit file of our vending machine that 
  * keeps track of when users purchased items and how much change was returned to them
  */
 @Component
-@Primary
-public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
+public class VendingMachineAuditDaoStubFileImpl implements VendingMachineAuditDao {
     final private String DATE_PATTERN = "yyyy-MM-dd hh:mm:ss";
     public static String auditFile;
     
-    public VendingMachineAuditDaoFileImpl() {
+    public VendingMachineAuditDaoStubFileImpl() {
         auditFile = "audit.txt";
     }
-    public VendingMachineAuditDaoFileImpl(String auditFile) {
+    @Autowired
+    public VendingMachineAuditDaoStubFileImpl(@Value("test-audit.txt") String auditFile) {
         this.auditFile = auditFile;
     }
     

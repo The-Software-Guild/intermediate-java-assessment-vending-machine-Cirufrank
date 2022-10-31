@@ -8,19 +8,23 @@ import com.we.vendingmachine.dto.UserChange;
 import com.we.vendingmachine.dto.VendingMachineItem;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class acts of the view of the Vending Machine
  * Application and is responsible for all information displayed to 
  * the users of our application
  * 
  */
-
+@Component
+@Primary
 public class VendingMachineView {
     final int INT_NO_MONEY = 0;
     final BigDecimal NO_MONEY = new BigDecimal("0.00");
@@ -50,6 +54,7 @@ public class VendingMachineView {
             CHOICE_12_EXIT_TEXT = "12 -> Exit Vending Machine";
     
     private UserIO io;
+    @Autowired
     public VendingMachineView(UserIO io) {
         this.io = io;
     }

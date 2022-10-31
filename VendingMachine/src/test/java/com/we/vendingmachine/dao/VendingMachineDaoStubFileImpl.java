@@ -17,12 +17,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description TEST STUB: This class implements the methods declared by the
  * VendingMachineDao interface that allows our application to read, 
@@ -33,13 +37,13 @@ import java.util.Scanner;
  * the marshallItems method public instead of void without altering
  * the VendingMachineDaoFileImpl class
  */
-
+@Component
 public class VendingMachineDaoStubFileImpl implements VendingMachineDao {
    final private String DELIMITER = "::";
    final private Map <Integer, VendingMachineItem> vendingMachineItems = new HashMap<>();
    private String inventoryFile;
-   
-   public VendingMachineDaoStubFileImpl(String testInventoryTxt) {
+   @Autowired
+   public VendingMachineDaoStubFileImpl(@Value("test-inventory.txt") String testInventoryTxt) {
        inventoryFile = testInventoryTxt;
    }
    

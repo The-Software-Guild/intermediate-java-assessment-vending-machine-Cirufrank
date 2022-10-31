@@ -30,7 +30,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class automates the Unit tests for the 
  * VendingMachineServiceLayer using JUnit
@@ -47,7 +47,7 @@ public class VendingMachineServiceLayerImplTest {
     @ParameterizedTest
     @ValueSource(ints = {3})
     @DisplayName("Pruchase item test")
-    public void testPurchaseItem(int itemId, VendingMachineServiceLayerImpl testServiceLayer) throws VendingMachineInsufficientFundsException,
+    public void testPurchaseItem(int itemId, VendingMachineServiceLayerStubImpl testServiceLayer) throws VendingMachineInsufficientFundsException,
             VendingMachineDaoPersistenceException, VendingMachineItemUnavailableException {
         final CoinName QUARTER = CoinName.QUARTER;
         final VendingMachineDaoStubFileImpl publicTestDao = new VendingMachineDaoStubFileImpl("test-inventory.txt");
@@ -84,7 +84,7 @@ public class VendingMachineServiceLayerImplTest {
     @ParameterizedTest
     @ValueSource(ints = {9})
     @DisplayName("Purchase item when item out of stock")
-    public void testPurchaseItemOutOfStock(int itemId, VendingMachineServiceLayerImpl testServiceLayer) throws VendingMachineInsufficientFundsException,
+    public void testPurchaseItemOutOfStock(int itemId, VendingMachineServiceLayerStubImpl testServiceLayer) throws VendingMachineInsufficientFundsException,
             VendingMachineDaoPersistenceException {
         final CoinName QUARTER = CoinName.QUARTER;
         final VendingMachineDaoStubFileImpl publicTestDao = new VendingMachineDaoStubFileImpl("test-inventory.txt");
@@ -103,7 +103,7 @@ public class VendingMachineServiceLayerImplTest {
     @ParameterizedTest
     @ValueSource(ints = {9})
     @DisplayName("Attempt to purchase out of stock item when funds are insufficient")
-    public void testAttemptInsufficientFundPurchase(int itemId, VendingMachineServiceLayerImpl testServiceLayer) throws
+    public void testAttemptInsufficientFundPurchase(int itemId, VendingMachineServiceLayerStubImpl testServiceLayer) throws
             VendingMachineDaoPersistenceException, VendingMachineItemUnavailableException {
         final CoinName QUARTER = CoinName.QUARTER;
         final VendingMachineDaoStubFileImpl publicTestDao = new VendingMachineDaoStubFileImpl("test-inventory.txt");

@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class represents our UserChange DTO which defines
  * the properties and methods we'd like to be available to user change 

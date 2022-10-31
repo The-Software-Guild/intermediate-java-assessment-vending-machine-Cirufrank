@@ -8,7 +8,7 @@ package com.we.vendingmachine.dao;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This interface declares the method responsible for
  * auditing the items purchased from our vending machine

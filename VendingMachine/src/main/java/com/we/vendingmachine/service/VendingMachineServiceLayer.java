@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This interface declares the methods responsible for the Vending 
  * Machine business logic of our application

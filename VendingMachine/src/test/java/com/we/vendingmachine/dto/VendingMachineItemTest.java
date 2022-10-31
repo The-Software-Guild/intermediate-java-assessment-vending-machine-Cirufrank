@@ -13,7 +13,7 @@ import org.junit.jupiter.api.DisplayName;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class acts as the test suite for the DTO
  * to ensure that all of the getter and setter methods work correctly

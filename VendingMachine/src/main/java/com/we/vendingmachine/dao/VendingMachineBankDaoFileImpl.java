@@ -19,18 +19,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class is a file implementation of the VendingMachineBankDao
  * and acts as the DAO responsible for reading from and updating/writing to the 
  * coin bank inventory file
  */
-
+@Component
+@Primary
 public class VendingMachineBankDaoFileImpl implements VendingMachineBankDao {
     final private Map<CoinName, Coin> coinBank = new HashMap<>();
     private String inventoryFile;

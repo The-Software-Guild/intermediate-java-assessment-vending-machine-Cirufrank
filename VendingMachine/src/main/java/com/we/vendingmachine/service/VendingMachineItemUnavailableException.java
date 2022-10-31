@@ -8,7 +8,7 @@ package com.we.vendingmachine.service;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Code Along: Class Roster
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class allows us to create a custom exception that
  * will be thrown if the item a user is attempting to purchase is no 

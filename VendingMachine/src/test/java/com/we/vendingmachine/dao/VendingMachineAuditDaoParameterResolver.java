@@ -7,12 +7,13 @@ package com.we.vendingmachine.dao;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolver;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class is our parameter resolver for the 
  * VendingMachingAuditDaoFileImpl class, and it allows us to use dependency injection without our unit tests to that we
@@ -23,12 +24,16 @@ import org.junit.jupiter.api.extension.ParameterResolver;
 public class VendingMachineAuditDaoParameterResolver implements ParameterResolver {
     @Override 
     public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
-        return parameterContext.getParameter().getType() == VendingMachineAuditDaoFileImpl.class;
+        return parameterContext.getParameter().getType() == VendingMachineAuditDaoStubFileImpl.class;
     }
     
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
-        return new VendingMachineAuditDaoFileImpl("test-audit.txt");
+        AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext();
+        appContext.scan("com.we.vendingmachine.dao");
+        appContext.refresh();
+        VendingMachineAuditDao testAuditDao = appContext.getBean("vendingMachineAuditDaoStubFileImpl", VendingMachineAuditDaoStubFileImpl.class);
+        return testAuditDao;
     }
 }
 

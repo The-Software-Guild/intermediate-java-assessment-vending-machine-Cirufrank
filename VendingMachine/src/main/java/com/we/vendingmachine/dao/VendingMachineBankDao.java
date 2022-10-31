@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This interface declares the methods that should 
  * be available to give user change after a purchase from the 

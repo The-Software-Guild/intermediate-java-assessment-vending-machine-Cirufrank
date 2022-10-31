@@ -17,18 +17,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class implements the methods declared by the
  * VendingMachineDao interface that allows our application to read, 
  * retrieve, and update our vending machine item inventory
  */
-
+@Component
+@Primary
 public class VendingMachineDaoFileImpl implements VendingMachineDao {
    final private String DELIMITER = "::";
    final private Map <Integer, VendingMachineItem> vendingMachineItems = new HashMap<>();

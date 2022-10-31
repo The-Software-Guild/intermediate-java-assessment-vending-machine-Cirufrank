@@ -7,17 +7,18 @@ package com.we.vendingmachine.ui;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Cirũ Franklin (she/they), Software Engineer
  * @course DI002 Full Stack Development Using Java and React (2210)
- * @project Assessment: Vending Machine
+ * @project Assessment: Vending Machine with Spring DI
  * 
  * @description This class implements the UserIO interface and acts as a 
  * console implementation of the input/output functionality of the application
  */
-
+@Component
 public class UserIOConsoleImpl implements UserIO {
     private Scanner scanner = new Scanner(System.in);
     public void print(String message) {
