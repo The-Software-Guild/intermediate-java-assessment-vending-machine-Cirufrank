@@ -70,7 +70,7 @@ public class VendingMachineBankDaoFileImplTest {
     //Tests that the coin inventory is properly updated when change is given
     @Test
     @DisplayName("Test giveChange method")
-    public void testGiveChange(VendingMachineBankDaoStubFileImpl testBankDao) {
+    public void testGiveChange(VendingMachineBankDaoStubFileImpl testBankDao) throws VendingMachineDaoPersistenceException {
         final int TOTAL_QUARTERS = 4, TOTAL_NICKELS = 2, TOTAL_PENNIES = 1, TOTAL_DIMES = 1;
         final UserChange userChange = new UserChange(new BigDecimal("1.21"));
         final ArrayList<Coin> prevCoinBank = new ArrayList(testBankDao.getAllCoins());

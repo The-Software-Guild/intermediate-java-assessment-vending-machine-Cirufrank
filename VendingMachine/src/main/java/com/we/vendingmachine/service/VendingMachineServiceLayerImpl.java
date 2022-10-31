@@ -75,7 +75,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         final BigDecimal changeLeftOver = inputMoney.subtract(itemPrice);
         if ((changeLeftOver.compareTo(BigDecimal.ZERO) >= EXACT_AMOUNT) != true) {
             final BigDecimal fundsNeeded = determineFundsStillNeeded(inputMoney, itemPrice);
-            throw new VendingMachineInsufficientFundsException("Funds insufficient: $" + fundsNeeded
+            throw new VendingMachineInsufficientFundsException("Funds insufficient: Additional $" + fundsNeeded
                     + " required to make specified purchase of ITEM: " + itemName) ;
         }
     }

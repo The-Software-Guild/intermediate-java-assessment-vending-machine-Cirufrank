@@ -79,6 +79,12 @@ public class VendingMachineController {
     }
     private void makeUserPurchase(int choiceOfUser) throws VendingMachineInsufficientFundsException, VendingMachineDaoPersistenceException,
         VendingMachineItemUnavailableException {
+        if (!view.inputMoneyIsAboveZero()) {
+            view.displayInvalidPurchaseBanner();
+            view.displayInputMoneyNeededMessage();
+            view.displayInvalidPurchaseBanner();
+            return;
+        }
         final VendingMachineItem itemChosen = service.getItem(choiceOfUser);
         final UserChange changeLeft = service.purchaseItem(view.getInputMoney(), itemChosen);
         view.resetInputMoney();

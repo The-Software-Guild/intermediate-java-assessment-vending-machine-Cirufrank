@@ -35,8 +35,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 @ExtendWith(VendingMachineParameterResolver.class)
 @DisplayName("Vending Machine Data Access Object tests")
 public class VendingMachineDaoFileImplTest {
-    final private String inventoryFileTestName = "test-inventory.txt";
-    private VendingMachineDaoStubFileImpl testDao;
+//    inventoryFileTestName and testDao variables no longer needed due to use of Parameter Resolver
+//    final private String inventoryFileTestName = "test-inventory.txt";
+//    private VendingMachineDaoStubFileImpl testDao;
     
     public VendingMachineDaoFileImplTest() {
     }
@@ -77,7 +78,7 @@ public class VendingMachineDaoFileImplTest {
     @ParameterizedTest
     @ValueSource(ints = {7, 9})
     @DisplayName("Test purchaseItem method")
-    public void testPurchaseItem(int itemId, VendingMachineDaoStubFileImpl testDao) {
+    public void testPurchaseItem(int itemId, VendingMachineDaoStubFileImpl testDao) throws VendingMachineDaoPersistenceException {
         final int ONE_ITEM = 1, NO_ITEMS = 0;
         final VendingMachineItem purchasedItem = testDao.getItem(itemId);
         final int prevNumOfItems = purchasedItem.getNumOfItems();

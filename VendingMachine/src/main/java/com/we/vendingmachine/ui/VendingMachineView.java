@@ -28,6 +28,8 @@ public class VendingMachineView {
     final String INPUT_MONEY_PROMPT = "Please input amount in this format: 0.00",
             ITEM_CHOICE_PROMPT = "Please enter choice below",
             NO_MONEY_TO_REFUND_MESSAGE = "No money to refund",
+            INPUT_MONEY_TO_MAKE_PURCHASE_MESSAGE = "Must input money to make a purchase",
+            INVALID_PURCHASE_BANNER = "=== INVALID PURCHASE ===",
             WELCOME_BANNER = "==== WELCOME TO THE VENDING MACHINE ===",
             REFUND_BANNER = "=== REFUND ===",
             ERROR_BANNER = "=== ERROR ===",
@@ -73,10 +75,19 @@ public class VendingMachineView {
     public void displayRefundBanner() {
         io.print(REFUND_BANNER);
     }
+    public void displayInvalidPurchaseBanner() {
+        io.print(INVALID_PURCHASE_BANNER);
+    }
+    public void displayInputMoneyNeededMessage() {
+        io.print(INPUT_MONEY_TO_MAKE_PURCHASE_MESSAGE);
+    }
     public void displayRefundedMoney() {
-        if (inputMoney.compareTo(NO_MONEY) > INT_NO_MONEY)
+        if (inputMoneyIsAboveZero())
         io.print("Here is your $" + inputMoney + " back");
         else io.print(NO_MONEY_TO_REFUND_MESSAGE);
+    }
+    public boolean inputMoneyIsAboveZero() {
+        return (inputMoney.compareTo(NO_MONEY) > INT_NO_MONEY);
     }
     public void updateInputMoney(BigDecimal additionalMoney) {
         this.inputMoney = this.inputMoney.add(additionalMoney);
@@ -112,7 +123,7 @@ public class VendingMachineView {
     }
     public void displayUserChangeAndItem(VendingMachineItem item, UserChange change) {
         final String itemPurchasedMessage = "Here is your item: " + item.getItemName();
-        final String changeMessage = "Also, here is your $" + change.getTotalChange() + ": "
+        final String changeMessage = "Also, here is your $" + change.getTotalChange() + " in change: "
                 + change.getTotalQuarters() + " in quarters, "  + change.getTotalDimes() + 
                 " in dimes, " + change.getTotalNickels() + " in nickels, and " + change.getTotalPennies()
                                 + " in pennies";
