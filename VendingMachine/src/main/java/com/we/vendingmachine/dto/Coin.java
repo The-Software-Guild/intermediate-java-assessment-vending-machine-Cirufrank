@@ -84,7 +84,8 @@ public class Coin {
         }
         return Objects.equals(this.total, other.total);
     }
-    //This help test error message become more readable
+    //This makes the test error message more readable when calling the toString()
+    //method on a Coin object
     @Override
     public String toString() {
         return "coin{" + "type=" + type + ", value=" + value + ", total=" + 

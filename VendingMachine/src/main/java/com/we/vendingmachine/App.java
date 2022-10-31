@@ -26,10 +26,12 @@ import com.we.vendingmachine.ui.VendingMachineView;
  * 
  * @description This application allows users to read and update
  * vending machine items by simulating valid purchase of them
+ * 
  * It uses the MVC architectural paradigm to organize files
  * in order to keep code DRY while separating concerns
+ * 
  * Through the use of file storage the inventory of items
- * remaining after storage persists
+ * remaining after purchase persists
  * 
  * Additionally, dependency injection is utilized in order to take advantage
  * of loose coupling

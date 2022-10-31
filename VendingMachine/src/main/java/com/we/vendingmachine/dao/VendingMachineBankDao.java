@@ -25,8 +25,7 @@ public interface VendingMachineBankDao {
     /**
      * Determines change to be returned to user after successful purchase
      *
-     * @param inputMony BigDecimal money input by user
-     * @param itemPrice BigDecimal price for item that user is attempting to purchase
+     * @param change UserChange object representing the change to be given to the user
      * @return UserChange object representing the change to be given back to the user
      */
     public UserChange giveChange(UserChange change) throws VendingMachineDaoPersistenceException;

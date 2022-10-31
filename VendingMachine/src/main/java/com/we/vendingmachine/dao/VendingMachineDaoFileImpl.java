@@ -26,7 +26,7 @@ import java.util.Scanner;
  * 
  * @description This class implements the methods declared by the
  * VendingMachineDao interface that allows our application to read, 
- * retrieve, and update our inventory
+ * retrieve, and update our vending machine item inventory
  */
 
 public class VendingMachineDaoFileImpl implements VendingMachineDao {

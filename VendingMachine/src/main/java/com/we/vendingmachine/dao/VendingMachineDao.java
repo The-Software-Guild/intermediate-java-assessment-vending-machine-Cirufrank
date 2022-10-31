@@ -21,24 +21,27 @@ import java.util.List;
 public interface VendingMachineDao {
     /**
      * Allows user to buy a item and returns the item if a successful purchase is made
-     * or null otherwise
+     * or throws a VendingMachineDaoPersistenceException otherwise
+     * 
+     * A successful purchase here means that the number of the said item available 
+     * in inventory was decreased by 1, representing the successful purchase of the item
+     * from the main DAO's perspective
      *
      * @param item VendingMachineItem that user would like to purchase
-     * @return VendingMachineItem purchase if successful purchase is made, and 
-     * null if not
+     * @return VendingMachineItem if successful purchase is made, and 
+     * throw VendingMachineDaoPersistenceException if not
      */
     public VendingMachineItem purchaseItem(int itemId) throws VendingMachineDaoPersistenceException;
     /**
      * Allows a specific item to be retrieved and returned from the 
-     * available vending items, decreasing the number of that item available in
-     * inventory when doing so
+     * vending machine items in inventory
      *
-     * @param itemid int representing item ID
-     * @return VendingMachineItem with a matching id or no such items
+     * @param itemid int representing item's ID
+     * @return VendingMachineItem with a matching id or no such items (null)
      */
     public VendingMachineItem getItem(int itemId) throws VendingMachineDaoPersistenceException;
     /**
-     * Retrieves a list of all items from inventory
+     * Retrieves a list of all VendingMachineItem items from inventory
      *
      * @return a List<> of all vending machine items from inventory
      */

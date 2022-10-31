@@ -21,6 +21,7 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
+    final private String DATE_PATTERN = "yyyy-MM-dd hh:mm:ss";
     public static String auditFile;
     
     public VendingMachineAuditDaoFileImpl() {
@@ -34,8 +35,7 @@ public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
     public void writeAuditEntry(String message) throws VendingMachineDaoPersistenceException {
         LocalDateTime timeStamp = LocalDateTime.now();
         String formattedTimeStamp = timeStamp.format(
-                DateTimeFormatter.ofPattern(
-                        "yyyy-MM-dd hh:mm:ss"));
+                DateTimeFormatter.ofPattern(DATE_PATTERN));
         try {
             PrintWriter output = new PrintWriter(
                                         new FileWriter( auditFile, true));

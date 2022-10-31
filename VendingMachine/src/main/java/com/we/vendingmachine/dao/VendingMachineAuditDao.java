@@ -11,7 +11,7 @@ package com.we.vendingmachine.dao;
  * @project Assessment: Vending Machine
  * 
  * @description This interface declares the method responsible for
- * auditing the items purchased from out vending machine
+ * auditing the items purchased from our vending machine
  */
 
 public interface VendingMachineAuditDao {

@@ -23,7 +23,7 @@ import java.util.List;
  * @course DI002 Full Stack Development Using Java and React (2210)
  * @project Assessment: Vending Machine
  * 
- * @description This class implements the VendignMachineService Layer interface 
+ * @description This class implements the VendingMachineService Layer interface 
  * and the methods responsible for the Vending Machine's business logic of our application
  * 
  * These methods should be available to perform calculations the determine when to 
